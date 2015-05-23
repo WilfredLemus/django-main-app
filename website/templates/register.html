@@ -1,0 +1,37 @@
+<font size="5"> Join our restaurant community! </font>
+
+<form method="POST" action="{% url 'register' %}">
+    {% csrf_token %}
+
+    <br />
+
+    <div>
+        <label> Username: </label>
+        <input type="text" name="username" />
+    </div>
+
+    <br />
+
+    <div>
+        <label> Email: </label>
+        <input type="email" name="email" />
+    </div>
+
+    <br />
+
+    <div>
+        <label> Password: </label>
+        <input type="password" name="password" />
+    </div>
+
+    <br />
+
+    <div>
+        <label> Repeat password: </label>
+        <input type="password" name="password2" />
+    </div>
+
+    <br />
+
+    <input type="submit" value="Register" />
+</form>
