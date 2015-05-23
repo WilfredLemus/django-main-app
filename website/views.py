@@ -69,3 +69,7 @@ def register(request):
 
         else:
             return render(request, "register.html", locals())
+
+
+def log(request):
+    return render(request, "login.html")

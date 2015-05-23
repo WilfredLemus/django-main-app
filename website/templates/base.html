@@ -1,0 +1,28 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+	<script src="{% static 'website/js/jquery-2.1.4.min.js' %}"></script>
+	<title>{{ title }}</title>
+</head>
+<body>
+	<header>
+		<div id="logo"> Welcome to our restaurant!</div>
+
+		{% if request.user.is_authenticated != False %}
+
+	    <div id="logged_menu">
+	        Hello, {{ request.user.username }}
+	        <a href="{% url 'logout' %}">Logout here</a>
+	    </div>
+	    {% endif %}
+	</header>
+	<div class="wrapper">
+		<section>
+        	{% block content %}
+        	{% endblock %}
+    	</section>
+    </div>
+</body>
+</html>
