@@ -49,3 +49,4 @@ class Order(models.Model):
     table = models.PositiveSmallIntegerField()
     date = models.DateTimeField(auto_now_add=True)
     meals = models.ManyToManyField(Meal)
+    is_paid = models.BooleanField()
