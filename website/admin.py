@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from . models import TypeMeal, Meal, Menu, Review
+from . models import TypeMeal, Meal, Review, Order
 
 
 # Register your models here.
@@ -8,5 +8,5 @@ from . models import TypeMeal, Meal, Menu, Review
 
 admin.site.register(TypeMeal)
 admin.site.register(Meal)
-admin.site.register(Menu)
 admin.site.register(Review)
+admin.site.register(Order)

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -14,33 +15,37 @@ class Meal(models.Model):
     name = models.CharField(max_length=100)
     rating = models.FloatField()
     price = models.FloatField()
-    # type_id = models.ForeignKey(TypeFood)
+    description = models.TextField(default="")
+    # image = models.ImageField()
+    type_id = models.ForeignKey(TypeMeal)
     # menu_id = models.ManyToManyField(Menu) ??
 
     def __str__(self):
         return "{} {} {}$".format(self.name, self.rating, self.price)
 
 
-class Menu(models.Model):
-    name = models.CharField(max_length=50)
-    # meals = models.ManyToManyField(Meal) ??
+# class Menu(models.Model):
+#     name = models.CharField(max_length=50)
+#     # meals = models.ManyToManyField(Meal) ??
 
-    def __str__(self):
-        return "{}".format(self.name)
+#     def __str__(self):
+#         return "{}".format(self.name)
 
 
 class Review(models.Model):
+    user_id = models.ForeignKey(User)
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    # meal = models.ForeignKey(Meal)
+    meal_id = models.ForeignKey(Meal)
 
     def __str__(self):
-        return "{} {}".format(self.content, self.date)
+        return "{} {} {} {}".format(
+            self.user_id, self.content, self.date, self.meal
+                                    )
 
 
-# class Order(models.Model):
-#     table = models.PositiveSmallIntegerField()
-
-
-# class TableMeal(models.Model):
-#     pass
+class Order(models.Model):
+    user_id = models.ForeignKey(User)
+    table = models.PositiveSmallIntegerField()
+    date = models.DateTimeField(auto_now_add=True)
+    meals = models.ManyToManyField(Meal)
