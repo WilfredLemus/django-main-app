@@ -1,31 +1,4 @@
-{% extends "base.html" %}
 
-{% block content %}
-    <div id="main_buttons">
-        {% if request.user.is_authenticated != True %}
-            <a href="{% url 'log' %}">
-                <div id="login_button">
-                    Login
-                </div>
-            </a>
-        {% endif %}
-
-        <a href=#>
-            <div id="make_order_button">
-                Make order
-            </div>
-        </a>    
-    </div>
-    {% if request.user.is_authenticated != True %}
-    <p>If you want to join our community:</p>
-        <a href="{% url 'register' %}">
-            <div id="register_button">
-                Registration
-            </div>
-        </a>  
-    {% endif %} 
-
-    <!--
     <p>
         <a href=""> Order </a>
     </p>
@@ -68,5 +41,3 @@
     </p>
 
     {% endif %}
-    -->
-{% endblock %}
