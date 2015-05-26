@@ -37,7 +37,7 @@
           <li><a class="active color_animation" href="#top">WELCOME</a></li>
             <li><a class="color_animation" href="#story">ABOUT</a></li>
             <li><a class="color_animation" href="#menu">MENU</a></li>
-            <li><a class="color_animation" href="#beer">BEER</a></li>
+            <li><a class="color_animation" href="#beer">MY ORDER</a></li>
             <li><a class="color_animation" href="#bread">BREAD</a></li>
             <li><a class="color_animation" href="#featured">FEATURED</a></li>
             <li><a class="color_animation" href="#contact">CONTACT</a></li>
@@ -51,20 +51,28 @@
     <div class="follow_container">
       <div class="starter_follow">
 
-      <h2 class="top-title">Welcome to X  Restaurant</h2>
+      <h2 class="top-title">Welcome to X Restaurant</h2>
       <h2 class="white second-title">" Best in the city "</h2><hr>
       <a href="#menu"><button type="button" class="btn btn-default" id="order">Make order</button></a>
+      <span id="registerHeading">OR</span>
       <button type="button" class="btn btn-default" id="login">LogIn</button>
       <div id="loginModule">
         <form action="#" method="POST">
-          <label for="name">Name:</label>
-          <input type="text" id="name">
-          <label for="password">Password:</label>
-          <input type="password" id="password">
+          <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name">
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password">
+          </div>
+          
         </form>
       </div>
-      <h3 id="registerHeading">If you want to join our restaurant commutnity</h3>
-      <a href="#registration"><button type="button" class="btn btn-default dropdown-toggle" id="register">Register</button></a>
+      <div id="registrationModule">
+        <h3 id="registerHeading">If you want to join our restaurant commutnity</h3>
+        <a href="#registration"><button type="button" class="btn btn-default dropdown-toggle" id="register">Register</button></a>
+      </div>
       </div>
     </div>
     <div class="direction_container">
@@ -259,7 +267,7 @@
 
 
     <section id="registration" class="background_content">
-     <h1>Reserve A Table!</h1>
+     <h1>Registration!</h1>
    </section>
    <section class="description_content">
       <div class="limit">
@@ -397,6 +405,7 @@
       <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
       <script type="text/javascript" src="js/jquery-ui.js"></script>      
       <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+      <script src="init.js"></script>
       <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
       <script type="text/javascript">
         $(function() {
