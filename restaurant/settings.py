@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'website',
     'django_forms_bootstrap',
     'payments',
+    # 'my_payments'
 )
 
 MIDDLEWARE_CLASSES = (
