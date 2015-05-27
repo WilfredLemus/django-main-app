@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import stripe
+#import stripe
 from django.contrib.auth.decorators import login_required
 
 
