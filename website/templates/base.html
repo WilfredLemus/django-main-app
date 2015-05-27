@@ -1,32 +1,98 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	{% block styles %}
+	{% endblock %}
 	{% load staticfiles %}
-	<link rel="stylesheet" href="{% static 'website/css/style.css' %}">
-	<script src="{% static 'website/js/jquery-2.1.4.min.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'website/css/normalize.css' %}">
+    <link rel="stylesheet" href=" {% static 'website/css/main.css' %}" media="screen" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'website/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/style-portfolio.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/picto-foundry-food.css' %}" />
+    <link rel="stylesheet" href="{% static 'website/css/jquery-ui.css' %}">
+    <link href="{% static 'website/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="icon" href="favicon-1.ico" type="image/x-icon">
+
+	
+	{% block scripts %}
+	{% endblock %}
+	<script type="text/javascript" src="{% static 'website/js/jquery-1.10.2.min.js' %}"> </script>
+    <script type="text/javascript" src="{% static 'website/js/bootstrap.min.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'website/js/jquery.mixitup.min.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'website/js/jquery-1.10.2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'website/js/jquery-ui.js' %}"></script>
+    <script type="text/javascript" src="{% static 'website/js/jquery.mixitup.min.js' %}" ></script>
+    <script src="{% static 'website/init.js' %}"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script type="text/javascript">
+        $(function() {
+          $('a[href*=#]:not([href=#])').click(function() {
+          if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+            if (target.length) {
+              $('html,body').animate({
+                scrollTop: target.offset().top
+              }, 1000);
+                return false;
+              }
+            }
+          });
+        });
+
+         
+        $(function(){
+          $('#portfolio').mixitup({
+            targetSelector: '.item',
+            transitionSpeed: 450
+          });
+        });
+    </script>
+	
 	<title>{{ title }}</title>
 </head>
 <body>
-	<header>
-		<div id="logo"> Welcome to our restaurant!</div>
 
-		{% if request.user.is_authenticated != False %}
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	    <div class="container-fluid">
+	      <!-- Brand and toggle get grouped for better mobile display -->
+	      <div class="navbar-header">
+	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	          <span class="sr-only">Toggle navigation</span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	        </button>
+	        <a class="navbar-brand" href="{% url 'index' %}">X Restaurant</a>
+	      </div>
 
-	    <div id="logged_menu">
-	        Hello, {{ request.user.username }}
-	        <a href="{% url 'logout' %}">Logout here</a>
-	    </div>
-	    {% endif %}
-	</header>
-	<div class="wrapper">
-		<section>
-        	{% block content %}
-        	{% endblock %}
-    	</section>
-        <section>
-            {% block order %}
-            {% endblock %}
-        </section>
-    </div>
+	      <!-- Collect the nav links, forms, and other content for toggling -->
+	      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	        <ul class="nav navbar-nav main-nav  clear pull-right">
+	          	<li><a class="active color_animation" href="{% url 'index' %}">WELCOME</a></li>
+	            <li><a class="color_animation" href="{% url 'order' %}">MY ORDER</a></li>
+	            {% if request.user.is_authenticated %}
+	           		<li><a class="color_animation" href="#">Profile</a></li>
+	            	<li><a class="color_animation" href="{% url 'logout' %}">Logout</a></li>
+	            {% endif %}
+	        </ul>
+	      </div><!-- /.navbar-collapse -->
+	    </div><!-- /.container-fluid -->
+	</nav>
+
+
+	{% block content %}
+    {% endblock %}
+
+    <footer class="sub_footer">
+	    <section class="limit">
+	          <div><p>&copy; Restaurant 2014</p></div>
+	          <div><p>BACK TO <a href="#top">TOP</a></p></div>
+	    </section>
+    </footer>
 </body>
 </html>

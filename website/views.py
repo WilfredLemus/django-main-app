@@ -11,20 +11,24 @@ def index(request):
     # if request.user.is_authenticated():
     #     return redirect("index")
     # else:
+    context = {
+        'title': 'Restaurant'
+    }
     print(request.user)
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = authenticate(username=username, password=password)
-        print(username)
-        print(password)
+        print("Tup")
+        print(user)
         if user is not None:
+            print("Kurva")
             login(request, user)
             return redirect("index")
         else:
             return redirect('index')
     else:
-        return render(request, "index22.html")
+        return render(request, "index.html", context)
 
 
 def _validate_register(username, email, password, password2):
@@ -42,7 +46,7 @@ def _validate_register(username, email, password, password2):
 
 def user_logout(request):
     logout(request)
-    return redirect("index22")
+    return redirect("index")
 
 
 def register(request):
@@ -62,6 +66,8 @@ def register(request):
                 return redirect("register")
 
             user = User.objects.create_user(username, email, password)
+
+            user = authenticate(username=username, password=password)
 
             if user is not None:
                 login(request, user)

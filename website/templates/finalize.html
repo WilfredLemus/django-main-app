@@ -1,7 +1,34 @@
-<p> Finalize </p>
-<br />
-<a href="{% url 'order' %}">Order more meals</a>
+{% extends "base.html" %}
 
-<form>
+{% block content %}
 
-</form>
+    {% load staticfiles %}
+    
+  	<section  class="description_content">
+    	<div style="width:500px;margin: 0 auto;margin-top:130px;min-height:350px;">
+	        <a href="order.html"><button type="button" class="btn btn-success btn-lg" id="order-btn">Order more</button></a>
+	        <table>
+	            <tr>
+	                <td>Your order:</td>
+	            </tr>
+	            <tr>
+	                <td>Potatoes</td>
+	            </tr>
+	        </table>
+
+	        <label>Table number:</label>
+	        <input id="table-number" type="number">
+
+	        <label>You owe:</label>
+	        <span>65 леа</span><br/>
+
+	        <button type="button" class="btn btn-primary pay-button">Pay only my bill <br/>
+	        in cash</button>
+	        <button type="button" class="btn btn-primary pay-button">Pay the whole table's bill <br/>in cash</button><br/>
+	        <button type="button" class="btn btn-primary pay-button">Pay only my bill <br/>
+	        with PayPal</button>
+	        <button type="button" class="btn btn-primary pay-button">Pay the whole table's bill<br/>with PayPal</button>
+	    </div>
+  	</section>
+
+{% endblock %}

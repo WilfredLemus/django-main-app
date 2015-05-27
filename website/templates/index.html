@@ -1,43 +1,114 @@
+{% extends "base.html" %}
 
-    <p>
-        <a href="{% url 'order' %}"> Order </a>
-    </p>
 
-    {% if request.user.is_authenticated %}
 
-    <p>
-        Hello, {{ request.user.username }}
-    </p>
+{% block content %}
+    {% load staticfiles %}
+    <div id="top" class="starter_container bg">
 
-    <p>
-        <a href="{% url 'logout' %}">Logout here</a>
-    </p>
+    <div class="follow_container">
+      <div class="starter_follow">
 
-    {% else %}
+      <h2 class="top-title">Welcome to X Restaurant</h2>
+      <hr>
+      <a href="{% url 'order' %}"><button type="button" class="btn btn-default" id="order">Make order</button></a>
+      {% if not request.user.is_authenticated %}
+          <span id="registerHeading">OR</span>
+          <button type="button" class="btn btn-default" id="login">LogIn</button>
+          <div id="loginModule">
 
-        <form method="POST">
-          {% csrf_token %}
+            <form  method="POST">
+                {% csrf_token %}
+                <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="username">
+              </div>
+              <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+              </div>
+              <div>
+                <input type="submit" value="Login" />
+                </div>
+            </form>
 
-            <br />
-            <div>
-                <label> Username: </label>
-                <input type="text" name="username" />
-            </div>
+          </div>
 
-            <br />
+          <div id="registrationModule">
 
-            <div>
-                <label> Password: </label>
-                <input type="password" name="password" />
-            </div>
+                <h3 id="registerHeading">If you want to join our restaurant commutnity</h3>
+                <a href="#registration"><button type="button" class="btn btn-default dropdown-toggle" id="register">Register</button></a>
 
-            <br />
+          </div>
+      {% endif %}
+      </div>
+    </div>
+    <div class="direction_container">
+        <div class="direction">
+          <a href="#story"></a>
+        </div>
+    </div>
+  </div>
+  <section id="story" class="description_content">
+      <div class="limit">
+        <div class="description_body margin-right">
+          <h1>About us</h1>
+          <div class="fa fa-cutlery fa-2x"></div>
+          <p>Restaurant is a place for simplicity. Good food, good beer, and good service. Simple is the name of the game, and we’re good at finding it in all the right places, even in your dining experience. We’re a small group from Denver, Colorado who make simple food possible. Come join us and see what simplicity tastes like.</p>
+        </div>
+        <div class="picture_content margin-left">
+            <ul class="image_box_story">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+   </section>
+    <section id="registration" class="background_content">
+     <h1>Registration!</h1>
+   </section>
+   <section class="description_content">
+      <div class="limit">
+        <div class="inner contact">
+                <!-- Form Area -->
+                <div class="contact-form">
+                    <!-- Form -->
+                    <form id="contact-us" method="post" action="{% url 'register' %}">
+                        <!-- Left Inputs -->
+                        {% csrf_token %}
+                       <div class="container col-xs-3 ">
+                            <!-- Name -->
+                            <input type="text" name="username"  required="required" class="form" placeholder="Username" />
+                            <input type="email" name="email"  required="required" class="form" placeholder="Email" />
+                            <input type="password" name="password"  required="required" class="form" placeholder="Password" />
+                            <input type="password" name="password2"  required="required" class="form" placeholder="Repeat password" />
 
-          <input type="submit" value="Login" />
-        </form>
 
-    <p>
-        <a href="{% url 'register' %}"> Register </a>
-    </p>
+                            <!-- Send Button -->
+                            <button type="submit" id="submit" name="submit" class=" form-btn form-btn1 semibold">Registration</button>
+                        </div><!-- End Bottom Submit -->
 
-    {% endif %}
+
+                        </div><!-- End Left Inputs -->
+
+                        <!-- Clear -->
+                        <div class="clear"></div>
+                    </form>
+
+                </div><!-- End Contact Form Area -->
+            </div><!-- End Inner -->
+      </div>
+   </section>
+
+
+
+   
+    <div id="contact"  class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d26081603.29442047!2d-95.677068!3d37.0625!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1421239704485" width="100%" height="400px" frameborder="0" style="border:0"></iframe>
+    </div>
+
+
+{% endblock %}
+
