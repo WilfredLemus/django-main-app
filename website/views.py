@@ -59,9 +59,7 @@ def register(request):
             if not _validate_register(username, email, password, password2):
                 return redirect("register")
 
-            User.objects.create_user(username, email, password)
-
-            user = authenticate(username=username, password=password)
+            user = User.objects.create_user(username, email, password)
 
             if user is not None:
                 login(request, user)
