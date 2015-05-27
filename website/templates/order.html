@@ -15,70 +15,31 @@
             <div id="w">
                 <ul id="filter-list" class="clearfix">
                   <li class="filter" data-filter="all">Всички</li>
+                  {% for type in types %}
+                       <li class="filter" data-filter="{{type.id}}">{{type.name}}</li>
+                  {% endfor %}
+                  <!--
                   <li class="filter" data-filter="breakfast">Breakfast</li>
+                  
                   <li class="filter" data-filter="special">Special</li>
                   <li class="filter" data-filter="desert">Desert</li>
                   <li class="filter" data-filter="dinner">Dinner</li>
-                  
+                  -->
                 </ul><!-- @end #filter-list -->    
                 <ul id="portfolio">
-                    <li class="item breakfast menuItem"><img src="{% static 'website/images/food_icon01.jpg' %}" alt="Food" >
-                      <h2 class="white orderText">Pizza 18$</h2>
-                      <p id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptate ut, praesentium numquam officia dolore eligendi nobis placeat minus autem necessitatibus doloribus nostrum ipsam ex, reprehenderit non. Voluptatibus, dolore 
-                      deleniti.
-                      <button class="btn btn-default" id="btn-add">Order</button>
-                      </p>
 
-                    </li>
-                    <li class="item dinner special menuItem"><img src="{% static 'website/images/food_icon02.jpg' %}" alt="Food" >
-                      <h2 class="white orderText">Pizza 18$</h2>
-                      <p id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptate ut, praesentium numquam officia dolore eligendi nobis placeat minus autem necessitatibus doloribus nostrum ipsam ex, reprehenderit non. Voluptatibus, dolore 
-                      deleniti.
-                      <button class="btn btn-default" id="btn-add">Order</button>
-                      </p>
-                    </li>
-                    <li class="item dinner breakfast menuItem"><img src="{% static 'website/images/food_icon03.jpg' %}" alt="Food" >
-                      <h2 class="white orderText">Pizza 18$</h2>
-                      <p id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptate ut, praesentium numquam officia dolore eligendi nobis placeat minus autem necessitatibus doloribus nostrum ipsam ex, reprehenderit non. Voluptatibus, dolore 
-                      deleniti.
-                      <button class="btn btn-default" id="btn-add">Order</button>
-                      </p>
-                    </li>
-                    <li class="item special menuItem"><img src="{% static 'website/images/food_icon03.jpg' %}" alt="Food" >
-                      <h2 class="white orderText">Pizza 18$</h2>
-                      <p id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptate ut, praesentium numquam officia dolore eligendi nobis placeat minus autem necessitatibus doloribus nostrum ipsam ex, reprehenderit non. Voluptatibus, dolore 
-                      deleniti.
-                      <button class="btn btn-default" id="btn-add">Order</button>
-                      </p>
-                    </li>
-                    <li class="item dinner menuItem"><img src="{% static 'website/images/food_icon05.jpg' %}" alt="Food" >
-                      <h2 class="white orderText">Pizza 18$</h2>
-                      <p id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptate ut, praesentium numquam officia dolore eligendi nobis placeat minus autem necessitatibus doloribus nostrum ipsam ex, reprehenderit non. Voluptatibus, dolore 
-                      deleniti.
-                      <button class="btn btn-default" id="btn-add">Order</button>
-                      </p>
-                    </li>
-                    <li class="item special menuItem"><img src="{% static 'website/images/food_icon06.jpg' %}" alt="Food" >
-                      <h2 class="white orderText">Pizza 18$</h2>
-                      <p id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptate ut, praesentium numquam officia dolore eligendi nobis placeat minus autem necessitatibus doloribus nostrum ipsam ex, reprehenderit non. Voluptatibus, dolore 
-                      deleniti.
-                      <button class="btn btn-default" id="btn-add">Order</button>
-                      </p>
-                    </li>
-                    <li class="item desert menuItem"><img src="{% static 'website/images/food_icon07.jpg' %}" alt="Food" >
-                      <h2 class="white orderText">Pizza 18$</h2>
-                      <p id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptate ut, praesentium numquam officia dolore eligendi nobis placeat minus autem necessitatibus doloribus nostrum ipsam ex, reprehenderit non. Voluptatibus, dolore 
-                      deleniti.
-                      <button class="btn btn-default" id="btn-add">Order</button>
-                      </p>
-                    </li>
-                    <li class="item desert breakfast menuItem"><img src="{% static 'website/images/food_icon08.jpg' %}" alt="Food" >
-                      <h2 class="white orderText">Pizza 18$</h2>
-                      <p id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptate ut, praesentium numquam officia dolore eligendi nobis placeat minus autem necessitatibus doloribus nostrum ipsam ex, reprehenderit non. Voluptatibus, dolore 
-                      deleniti.
-                      <button class="btn btn-default" id="btn-add">Order</button>
-                      </p>
-                    </li>
+                    {% for meal in meals %}
+                        <li class="item {{meal.type_id.id}} menuItem"><img src="{% static 'website/images/food_icon01.jpg' %}" alt="Food" >
+                        <h2 class="white orderText">{{meal.name}}</h2>
+                        <p id="description">
+                          {{meal.description}}
+                          <button class="btn btn-default" id="btn-add">Order</button>
+                        </p>
+
+                      </li>
+
+                    {% endfor %}
+
                 </ul><!-- @end #portfolio -->
             </div><!-- @end #w -->
           </div>
