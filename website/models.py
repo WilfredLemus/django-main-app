@@ -50,3 +50,13 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     meals = models.ManyToManyField(Meal)
     is_paid = models.BooleanField()
+
+    # def __str__(self):
+    #     result = ("{} {} {}\n".format(self.user_id, self.table, self.date))
+
+    #     for meal in self.meals.all():
+    #         result += "{}\n".format(str(meal))
+    #     return result
+
+    def get_meals(self):
+        return [meal for meal in self.meals.all()]
