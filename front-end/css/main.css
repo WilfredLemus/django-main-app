@@ -1416,6 +1416,19 @@ h1 {
     background-color: rgba(255,255,255,0);
 }
 
+#loginModule{
+  display: none;
+  height: 50px;
+/*  background-color: rgba(255,255,255,0.8);*/
+  height: 100px;
+  margin-top:30px;
+}
+
+button#login:hover div#loginModule{
+  display: block;
+  background-color: #fff;
+}
+
 #registerHeading{
   color: white;
   font-family: 'Playball', cursive;
@@ -1424,6 +1437,7 @@ h1 {
   font-size: 300%;
   font-weight: 400;
   font-size: 4vw;
+  vertical-align: middle;
 }
 
 .menuItem:hover{
@@ -1440,13 +1454,17 @@ h1 {
   display: block;
 }
 
-#loginModule{
-  display: none;
-}
+label{
+  color: white;
+  font-family: 'Playball', cursive;
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+  font-size: 2vw;
+  vertical-align: middle;
+  }
 
-#login:hover #loginModule{
-  display: inline-block;
-}
+
 
 #finalize-body{
   background: url('../images/steak.jpg') no-repeat center center;
