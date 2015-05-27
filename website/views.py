@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-# from django.http import HttpResponseBadRequest
+from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -128,3 +128,41 @@ def finalize(request):
 
 
     return render(request, "finalize.html")
+
+
+def search(request):
+    if request.method == 'POST':
+        data = request.POST.get("meal")
+        meals = Meal.objects.filter(name__icontains=data)
+        if meals:
+            data = meals
+        else:
+            return HttpResponse("No meals found!")
+        return render(request,'meals.html', locals())
+
+    else:
+        return HttpResponse("You are not allowed to view this page!")
+
+#login required
+def update_order(request):
+    if request.method == 'POST':
+        order = Order.objects.filter(pk=request.POST.get('order_id'))
+        order.is_served = True
+	order.save()
+        return redirect('get_orders')
+
+#login required 
+def get_orders(request):
+    if request.method == 'GET':
+        drinks=Order.objects.filter(meals__type_id__name='drinks', is_paid=False).order_by('table')
+        kitchen = Order.objects.exclude(meals__type_id__name='drinks', is_paid=False).order_by('table')
+        for order in drinks:
+            print("{} {} {} {}".format(order.seat_number,
+                                       order.table,
+                                       order.date,
+                                       type(order.meals)))
+        return HttpResponse("Bllalaalal") 
+    else:
+        pass
+
+
