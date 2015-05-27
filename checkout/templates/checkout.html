@@ -43,6 +43,10 @@ $(document).ready(function(){
 });
 
 </script>
+{% if success %}
+    {{ success }}
+{% endif %}
+
 <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
 
@@ -71,6 +75,12 @@ $(document).ready(function(){
             </label>
             <span> / </span>
             <input type="text" size="4" data-stripe="exp-year"/>
+          </div>
+
+          <div class="form-row">
+
+            <span> Price </span>
+            <input type="text" size="4" name="price"/>
           </div>
 
           <button class="btn btn-success" type="submit">Submit Payment</button>
