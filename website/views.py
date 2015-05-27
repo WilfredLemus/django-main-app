@@ -91,9 +91,9 @@ def order(request):
 
     type_meals = {}
 
-    for i in types:
-        meals = Meal.objects.filter(type_id=i.id)
-        type_meals[i] = meals
+    # for i in types:
+    #     meals = Meal.objects.filter(type_id=i.id)
+    #     type_meals[i] = meals
 
     current_user_id = request.user.id
     print (current_user_id)
