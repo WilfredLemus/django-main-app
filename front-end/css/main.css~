@@ -1448,37 +1448,4 @@ h1 {
   display: inline-block;
 }
 
-#finalize-body{
-  background: url('../images/steak.jpg') no-repeat center center;
-}
 
-#finalize-order{
-  color: white;
-  position:absolute;
-  top: 50%;
-  left: 50%;
-  /*width:30em;
-  height:18em;*/
-  margin-top: -9em; 
-  margin-left: -13em; 
-}
-
-.pay-button{
-  padding: 20px;
-  margin: 30px;
-  position:relative;
-
-}
-
-#order-btn{
-
-  margin: -10px -70px; 
-  position:relative;
-  top:50%; 
-  left:50%;
-}
-
-.admin-table-row{
-  background-color: rgba(128,0,128,1.0);
-  color: white;
-}
