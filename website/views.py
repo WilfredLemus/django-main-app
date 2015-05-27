@@ -11,18 +11,20 @@ def index(request):
     # if request.user.is_authenticated():
     #     return redirect("index")
     # else:
+    print(request.user)
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = authenticate(username=username, password=password)
-
+        print(username)
+        print(password)
         if user is not None:
             login(request, user)
             return redirect("index")
         else:
-            return redirect("index")
+            return redirect('index')
     else:
-        return render(request, "index.html")
+        return render(request, "index22.html")
 
 
 def _validate_register(username, email, password, password2):
@@ -40,7 +42,7 @@ def _validate_register(username, email, password, password2):
 
 def user_logout(request):
     logout(request)
-    return redirect("index")
+    return redirect("index22")
 
 
 def register(request):
