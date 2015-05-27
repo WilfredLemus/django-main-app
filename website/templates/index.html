@@ -1,6 +1,6 @@
 
     <p>
-        <a href=""> Order </a>
+        <a href="{% url 'order' %}"> Order </a>
     </p>
 
     {% if request.user.is_authenticated %}

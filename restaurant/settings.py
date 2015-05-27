@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django_forms_bootstrap',
     'payments',
     'stripe',
+    'checkout',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+
+{% block order %}
+
+<p> Make order </p>
+
+<form method="POST" action="finalize/">
+    {% csrf_token %}
+
+    <p> User_id: {{ request.user.id }} </p>
+
+    <br />
+
+    <div>
+        <label> Table: </label>
+        <input name="table_number" type="number" />
+    </div>
+
+    <br />
+
+    <div>
+        <label> Meal id: </label>
+        <input name="meal_id" type="number" />
+    </div>
+
+    <input type="submit" value="Order" />
+
+    <div>
+        <font size="6"> Meals: </font>
+
+        {% for key, values in type_meals.items %}
+            <li>
+                {{ key }}
+            </li>
+
+            {% for v in values %}
+                <ol>
+                    {{ v }}
+                </ol>
+            {% endfor %}
+
+        {% endfor %}
+    </div>
+
+    <br />
+
+  </form>
+
+<font size="4"> Your current order: </font>
+
+    {% for meal in your_order %}
+        <br />
+        {% for i in meal.meals.all %}
+            {{ i.name }}
+        {% endfor %}
+
+    {% endfor %}
+{% endblock %}

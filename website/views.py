@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+from .models import Meal, TypeMeal, Order
 
-# Create your views here.
 
 def index(request):
     # if request.user.is_authenticated():
@@ -75,3 +75,50 @@ def register(request):
 
 def log(request):
     return render(request, "login.html")
+
+
+def order(request):
+
+    meals = Meal.objects.all()
+
+    types = TypeMeal.objects.all()
+
+    type_meals = {}
+
+    for i in types:
+        meals = Meal.objects.filter(type_id=i.id)
+        type_meals[i] = meals
+
+    current_user_id = request.user.id
+    print (current_user_id)
+
+    your_order = Order.objects.filter(user_id=current_user_id, is_paid=False)
+    print (your_order)
+
+    # bam = your_order.get_meals()
+    # print (bam)
+    return render(request, "order.html", locals())
+
+
+def finalize(request):
+
+    if request.method == "POST":
+        user = request.user
+        meal_id = int(request.POST.get("meal_id"))
+        print (type(meal_id))
+        table_number = int(request.POST.get("table_number"))
+
+        meal = Meal.objects.filter(id=meal_id).first()
+
+        pam = Order.objects.create(
+            user_id=user,
+            is_paid=False,
+            table=table_number,
+        )
+        pam.save()
+
+        pam.meals.add(meal)
+        pam.save()
+
+
+    return render(request, "finalize.html")
