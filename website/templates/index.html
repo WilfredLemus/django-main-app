@@ -9,7 +9,7 @@
     <div class="follow_container">
       <div class="starter_follow">
 
-      <h2 class="top-title">Welcome to X Restaurant</h2>
+      <h2 class="top-title">Welcome {{request.user.username}} to X Restaurant</h2>
       <hr>
       <a href="{% url 'order' %}"><button type="button" class="btn btn-default" id="order">Make order</button></a>
       {% if not request.user.is_authenticated %}
@@ -46,11 +46,11 @@
             <h2>Последни поръчки</h2>
             {% for order in request.user.order_set.all %}
                 <div style="border:1px solid black;">
-                     
+
                     {% for meal in order.meals.all %}
-                       
+
                           <p>{{meal.name}}</p>
-                      
+
                     {% endfor %}
 
                 </div>
@@ -122,7 +122,7 @@
 
 
 
-   
+
     <div id="contact"  class="map">
         <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d26081603.29442047!2d-95.677068!3d37.0625!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1421239704485" width="100%" height="400px" frameborder="0" style="border:0"></iframe>
     </div>

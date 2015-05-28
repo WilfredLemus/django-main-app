@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('website', '0003_userstripe'),
+        ('checkout', '0001_initial'),
     ]
 
     operations = [

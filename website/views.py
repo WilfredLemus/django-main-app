@@ -96,7 +96,7 @@ def order(request):
     current_user_id = request.user.id
     print(current_user_id)
 
-    your_order = Order.objects.filter(user_id=current_user_id, is_paid=False)
+    your_order = Order.objects.filter(user_id=current_user_id)
     print(your_order)
 
     # bam = your_order.get_meals()
@@ -124,5 +124,7 @@ def finalize(request):
         pam.meals.add(meal)
         pam.save()
 
+    current_user_id = request.user.id
+    your_order = Order.objects.filter(user_id=current_user_id)
 
-    return render(request, "finalize.html")
+    return render(request, "finalize.html", locals())

@@ -107,7 +107,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_test_y5uIjTHgELlwoHFdlFgwHOIu")
-STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_dAIMPSAPAuWf8RAmypa0sDVf")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_2S6OntzC28nv98hcy3Wtd81I")
 
 PAYMENTS_PLANS = {
     "monthly": {
