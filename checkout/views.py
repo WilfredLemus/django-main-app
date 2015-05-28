@@ -14,6 +14,7 @@ def checkout(request):
     context = {}
 
     customer_id = request.user.userstripe.stripe_id
+    print(customer_id)
 
     if request.method == "POST":
         token = request.POST['stripeToken']
