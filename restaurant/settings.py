@@ -105,3 +105,34 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "<your publishable test key>")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "<your secret test key>")
+
+PAYMENTS_PLANS = {
+    "monthly": {
+        "stripe_plan_id": "pro-monthly",
+        "name": "Web App Pro ($25/month)",
+        "description": "The monthly subscription plan to WebApp",
+        "price": 25,
+        "currency": "usd",
+        "interval": "month"
+    },
+    "yearly": {
+        "stripe_plan_id": "pro-yearly",
+        "name": "Web App Pro ($199/year)",
+        "description": "The annual subscription plan to WebApp",
+        "price": 199,
+        "currency": "usd",
+        "interval": "year"
+    },
+    "monthly-trial": {
+        "stripe_plan_id": "pro-monthly-trial",
+        "name": "Web App Pro ($25/month with 30 days free)",
+        "description": "The monthly subscription plan to WebApp",
+        "price": 25,
+        "currency": "usd",
+        "interval": "month",
+        "trial_period_days": 30
+    },
+}
