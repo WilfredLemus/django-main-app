@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Meal',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
                 ('rating', models.FloatField()),
                 ('price', models.FloatField()),
@@ -25,20 +25,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Order',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
                 ('seat_number', models.PositiveSmallIntegerField()),
                 ('table', models.PositiveSmallIntegerField()),
                 ('date', models.DateTimeField(auto_now_add=True)),
                 ('is_paid', models.BooleanField()),
                 ('is_served', models.BooleanField()),
-                ('meals', models.ManyToManyField(to='website.Meal', related_name='all_meals')),
+                ('meals', models.ManyToManyField(related_name='all_meals', to='website.Meal')),
                 ('user_id', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='Review',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
                 ('content', models.TextField()),
                 ('date', models.DateTimeField(auto_now_add=True)),
                 ('meal_id', models.ForeignKey(to='website.Meal')),
@@ -48,7 +48,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TypeMeal',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=50)),
             ],
         ),

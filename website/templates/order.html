@@ -121,7 +121,7 @@ $.ajaxSetup({
                   -->
                 </ul><!-- @end #filter-list -->
                 <ul id="portfolio">
-
+                    <!--
                     {% for meal in meals %}
                         <li class="item {{meal.type_id.id}} menuItem"><img src="{% static 'website/images/food_icon01.jpg' %}" alt="Food" >
                         <h2 class="white orderText">{{meal.name}}</h2>
@@ -133,6 +133,17 @@ $.ajaxSetup({
                       </li>
 
                     {% endfor %}
+                    -->
+                    {% for meal in meals %}
+                      <li class="item {{meal.type_id.id}} breakfast menuItem"><img src="{% static 'website/images/food_icon01.jpg' %}" alt="Food" >
+                        <h2 class="white orderText">{{meal.name}}</h2>
+                        <span>{{meal.price}}</span>
+                        <p id="description">{{meal.description}}
+                        <button class="btn btn-default" id="btn-add">Order</button>
+                        </p>
+                      </li>
+                    {% endfor %}
+
 
                 </ul><!-- @end #portfolio -->
             </div><!-- @end #w -->
