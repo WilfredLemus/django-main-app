@@ -535,12 +535,12 @@ MEDIA QUERIES TABLET
 
 @media (max-width: 400px) {
   .follow_container {
-    top: 40%;
+    top: 20%;
   }
 }
 @media (min-width: 400px) { 
   .starter_container {
-  height: 60%;
+  height: 70%;
   }
 
 .follow_container {
@@ -1557,4 +1557,15 @@ label{
     .navbar .navbar-collapse {
         text-align: right;
     }
+}
+
+div#loginButton{
+  width:300px;
+  height: 100px;
+  margin:0 auto;
+}
+div#loginButton input{
+  padding: 5px;
+  float: right;
+
 }
