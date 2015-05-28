@@ -2,19 +2,25 @@
 
 {% block content %}
 {% load staticfiles %}
-	
+
 	<section id ="menu" class="background_content">
      <h1><span>Affordable</span> pricing</h1>
    </section>
-   
+
     <section class="description_content">
       <div class="limit">
-	
+
 
 <h3> Search</h3>
     <script>
-	$( document ).ready(function() { 
+	$( document ).ready(function() {
 	$( "#frm" ).keyup( function(event){
+        if ( $("#frm").val() == ""){
+            $("#search_field").hide();
+        }
+        else {
+            $("#search_field").show();
+        }
 		$.ajax({
 	type: "POST",
   	url: "/search/",
@@ -24,7 +30,7 @@
   	success: function( data ) {
     	$( "#search_field" ).html( "<strong>" + data + "</strong> " );
   	}
-	});	
+	});
 		});
 
 	function getCookie(name) {
@@ -43,11 +49,11 @@
     return cookieValue;
 }
 var csrftoken = getCookie('csrftoken');
- 
+
 /*
 The functions below will create a header with csrftoken
 */
- 
+
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -65,7 +71,7 @@ function sameOrigin(url) {
         // or any other URL that isn't scheme relative or absolute i.e relative.
         !(/^(\/\/|http:|https:).*/.test(url));
 }
- 
+
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
         if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
@@ -82,7 +88,7 @@ $.ajaxSetup({
     });
 
     </script>
-	
+
 
 
     <form method="post">
@@ -90,8 +96,8 @@ $.ajaxSetup({
 	 <input type="text" name="frm" id="frm">
     </form>
 	<div id="search_field">
-	</div>       
-	
+	</div>
+
 
 
 
@@ -108,12 +114,12 @@ $.ajaxSetup({
                   {% endfor %}
                   <!--
                   <li class="filter" data-filter="breakfast">Breakfast</li>
-                  
+
                   <li class="filter" data-filter="special">Special</li>
                   <li class="filter" data-filter="desert">Desert</li>
                   <li class="filter" data-filter="dinner">Dinner</li>
                   -->
-                </ul><!-- @end #filter-list -->    
+                </ul><!-- @end #filter-list -->
                 <ul id="portfolio">
 
                     {% for meal in meals %}
@@ -132,11 +138,11 @@ $.ajaxSetup({
             </div><!-- @end #w -->
           </div>
         </div>
-      </div>  
+      </div>
    </section>
 
   <section  class="description_content">
-    
+
       <div class="table-responsive">
         <table class="table table-hover" id="cartItems">
           <thead>
@@ -165,13 +171,13 @@ $.ajaxSetup({
    </section>
 <!---
    <script id="cartTemplate" type="text/x-handlebars-template">
-   
+
     <tr>
       <td>{{name}}</td>
       <td>{{price}}</td>
       <td></td>
     </tr>
-    
+
   </script>
 -->
 
