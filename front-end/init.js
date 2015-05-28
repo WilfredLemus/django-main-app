@@ -30,7 +30,9 @@ function makeTable(){
             var tr = $("<tr></tr>");
             var tdName = $("<td></td>").append(items[item].name);
             var tdPrice = $("<td></td>").append(items[item].price);
-            var tdEmpty = $("<td></td>").append('');
+            var buttonIcon = $("<span></span>").addClass("glyphicon glyphicon-remove");
+            var removeButton = $("<button></button>").addClass("btn btn.danger").append(buttonIcon);
+            var tdEmpty = $("<td></td>").append(removeButton);
             tr.append(tdName);
             tr.append(tdPrice);
             tr.append(tdEmpty);
