@@ -94,10 +94,10 @@ def order(request):
     #     type_meals[i] = meals
 
     current_user_id = request.user.id
-    print (current_user_id)
+    print(current_user_id)
 
     your_order = Order.objects.filter(user_id=current_user_id, is_paid=False)
-    print (your_order)
+    print(your_order)
 
     # bam = your_order.get_meals()
     # print (bam)
@@ -109,7 +109,7 @@ def finalize(request):
     if request.method == "POST":
         user = request.user
         meal_id = int(request.POST.get("meal_id"))
-        print (type(meal_id))
+        print(type(meal_id))
         table_number = int(request.POST.get("table_number"))
 
         meal = Meal.objects.filter(id=meal_id).first()
