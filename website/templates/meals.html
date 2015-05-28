@@ -1,3 +1,13 @@
+{% load staticfiles %}
+<script src="{% static 'website/init.js' %}"></script>
 {% for meal in data %}
-<br> {{meal.name}} </br>
+
+  <li class="item {{meal.type_id.id}} breakfast menuItem">
+    <h2 class="white orderText">{{meal.name}}</h2>
+    <span>{{meal.price}}</span>
+    <p id="description">{{meal.description}}
+    <button class="btn btn-default" id="btn-add">Order</button>
+    </p>
+  </li>
+
 {% endfor %}

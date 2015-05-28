@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
     $("button#btn-add").on('click', function () {
+        console.log("dsa")
         var name = $(this).closest("li").find("h2").text();
         var price = $(this).closest("li").find("span").text();
         if (name != "" && price != "") {
