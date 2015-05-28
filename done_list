@@ -1,0 +1,6 @@
+1) Added search field to order.html and the needed code for it
+2)Added meals.html, which returns the meals we have
+3)Added url and view for the search function 
+4)Search field WORKS!
+5)Added extra field to Orders
+6)Added get_orders function in views and url for it

@@ -40,7 +40,7 @@ INSTALLED_APPS = (
 
     'website',
     'django_forms_bootstrap',
-    'stripe',
+    #'stripe',
     'checkout',
 )
 

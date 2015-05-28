@@ -47,10 +47,12 @@ class Review(models.Model):
 
 class Order(models.Model):
     user_id = models.ForeignKey(User)
+    seat_number = models.PositiveSmallIntegerField()
     table = models.PositiveSmallIntegerField()
     date = models.DateTimeField(auto_now_add=True)
-    meals = models.ManyToManyField(Meal)
+    meals = models.ManyToManyField(Meal, related_name='all_meals')
     is_paid = models.BooleanField()
+    is_served = models.BooleanField()
 
     # def __str__(self):
     #     result = ("{} {} {}\n".format(self.user_id, self.table, self.date))
