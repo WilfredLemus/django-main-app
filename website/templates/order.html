@@ -22,8 +22,8 @@
             $("#search_field").show();
         }
 		$.ajax({
-	type: "POST",
-  	url: "/search/",
+	         type: "POST",
+  	       url: "/search/",
   	data: {
     	meal: $("#frm").val()
   	},
@@ -168,9 +168,9 @@ $.ajaxSetup({
               <td>
                 <input type="number">
               </td>
-              <td>36lv</td>
+              <td id="totalPrice">36lv</td>
               <td>
-                <!--<a href="{% url 'finalize' %}">--><button class="btn.btn-sucess" id="makeOrder">Order</button><!--</a>-->
+                <a href="{% url 'finalize' %}"><button class="btn btn-sucess action-delete" id="makeOrder">Order</button></a>
               </td>
             </tr>
           </tfoot>

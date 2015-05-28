@@ -77,7 +77,7 @@ def register(request):
                 return redirect("index")
 
         else:
-            return render(request, "register.html", locals())
+            return render(request, "index.html", locals())
 
 
 def log(request):
@@ -131,8 +131,9 @@ def finalize(request):
 
 
 def search(request):
-    if request.method == 'POST':
+    if request.method == 'POST' or request.method == "GET":
         data = request.POST.get("meal")
+        print(data)
         meals = Meal.objects.filter(name__icontains=data)
         if meals:
             data = meals
