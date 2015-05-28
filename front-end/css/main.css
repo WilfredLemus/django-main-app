@@ -293,11 +293,11 @@ IMAGE INTRO BANNER CONTENT
   border-bottom: 8px solid #fff;
 }
 
-.background_content:nth-of-type(2) {
+/*.background_content#beer {
   background: url('../images/beer.jpg') no-repeat center center; 
   background-size: cover;
   background-position: 70% 50%;
-}
+}*/
 
 .background_content:nth-of-type(4) {
   background: url('../images/bread.jpg') no-repeat center center; 
@@ -1440,6 +1440,9 @@ button#login:hover div#loginModule{
   vertical-align: middle;
 }
 
+.menuItem span{
+  color:#fff;
+}
 .menuItem:hover{
   height: 400px;
 }
@@ -1447,6 +1450,7 @@ button#login:hover div#loginModule{
 #description{
   display: none;
   font-size: 14px;
+  text-align: left;
   color:#fff;
 }
 
