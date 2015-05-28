@@ -41,8 +41,7 @@ class Review(models.Model):
 
     def __str__(self):
         return "{} {} {} {}".format(
-            self.user_id, self.content, self.date, self.meal
-                                    )
+            self.user_id, self.content, self.date, self.meal)
 
 
 class Order(models.Model):
@@ -51,7 +50,6 @@ class Order(models.Model):
     table = models.PositiveSmallIntegerField()
     date = models.DateTimeField(auto_now_add=True)
     meals = models.ManyToManyField(Meal, related_name='all_meals')
-    is_paid = models.BooleanField()
     is_served = models.BooleanField()
 
     # def __str__(self):
@@ -63,3 +61,10 @@ class Order(models.Model):
 
     def get_meals(self):
         return [meal for meal in self.meals.all()]
+
+
+class Sell(models.Model):
+    user_id = models.ForeignKey(User)
+    order_id = models.ForeignKey(Order)
+    # is_finished = models.BooleanField()
+    is_paid = models.BooleanField()

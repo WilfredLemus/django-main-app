@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+import json
 from .models import Meal, TypeMeal, Order
 
 
@@ -85,6 +86,7 @@ def log(request):
 
 def order(request):
 
+
     meals = Meal.objects.all()
     types = TypeMeal.objects.all()
     type_meals = {}
@@ -96,7 +98,7 @@ def order(request):
     current_user_id = request.user.id
     print(current_user_id)
 
-    your_order = Order.objects.filter(user_id=current_user_id, is_paid=False)
+    your_order = Order.objects.filter(user_id=current_user_id)
     print(your_order)
 
     # bam = your_order.get_meals()
@@ -149,7 +151,8 @@ def update_order(request):
         order.save()
         return redirect('get_orders')
 
-#login required
+
+# login required
 def get_orders(request):
     if request.method == 'GET':
         drinks=Order.objects.filter(meals__type_id__name='drinks', is_paid=False).order_by('table')
@@ -164,3 +167,15 @@ def get_orders(request):
         pass
 
 
+def makecurrentorder(request):
+
+    cart = json.loads(request.POST.get("cart"))
+
+    print(cart['products'])
+    response_data = {
+        'success': True
+    }
+
+    order = Order(user_id=request.user, table=5, seat_number=0, is_served=0)
+    order.save()
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
