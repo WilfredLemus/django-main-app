@@ -76,7 +76,7 @@ def register(request):
                 return redirect("index")
 
         else:
-            return render(request, "register.html", locals())
+            return render(request, "index.html", locals())
 
 
 def log(request):
