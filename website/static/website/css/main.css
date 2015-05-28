@@ -294,11 +294,11 @@ IMAGE INTRO BANNER CONTENT
   border-bottom: 8px solid #fff;
 }
 
-/*.background_content#beer {
+.background_content:nth-of-type(2){
   background: url('../images/beer.jpg') no-repeat center center; 
   background-size: cover;
   background-position: 70% 50%;
-}*/
+}
 
 .background_content:nth-of-type(4) {
   background: url('../images/bread.jpg') no-repeat center center; 
@@ -322,6 +322,9 @@ background-attachment: fixed;
   background-size: cover;
   background-position: center;
 background-attachment: fixed;
+}
+#registration h1{
+  font-size:6vw;
 }
 #bread.background_content{
   background: url('../images/breakfast.jpg') no-repeat center center; 
@@ -530,18 +533,22 @@ SECOND FOOTER CONTENT
 MEDIA QUERIES TABLET
 =========================*/
 
-
+@media (max-width: 400px) {
+  .follow_container {
+    top: 40%;
+  }
+}
 @media (min-width: 400px) { 
   .starter_container {
-  height: 70%;
+  height: 60%;
   }
 
 .follow_container {
-  top: 15%;
+  top: 20%;
 }
 
 .background_content h1 {
-  top: 33%;
+  top: 53%;
 }
 
 .direction a {
@@ -863,7 +870,7 @@ IMAGE INTRO BANNER CONTENT
   height: 570px;
   background-color: white;
   margin: 0 auto 0 auto;
-  z-index: 98;
+  z-index: 99;
   text-align: center;
 }
 
@@ -1355,7 +1362,7 @@ margin-right: 60px;
 /* Send Button Styles */
 
   .form-btn{
-    width:180px;
+    width:300px;
     display: block;
     height: auto;
     padding:15px;
@@ -1364,6 +1371,7 @@ margin-right: 60px;
     border:none;
     border-radius:3px;
     outline: none;
+    margin:0 auto;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
@@ -1374,7 +1382,9 @@ margin-right: 60px;
   }
   .form-btn1{
     margin-left: -15px;
-    
+
+    margin:0 auto !important;
+    margin-bottom: 20px !important;
   }
 
   .form-btn:hover{
@@ -1519,4 +1529,32 @@ label{
 }
 .log input:first-of-type{
   margin-left:2px;
+}
+
+#contact-us input, #contact-us button{
+  width:300px;
+  display: block;
+  margin:10 auto;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: right;
+    }
 }

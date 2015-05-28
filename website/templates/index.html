@@ -6,65 +6,65 @@
     {% load staticfiles %}
     <div id="top" class="starter_container bg">
 
-    <div class="follow_container">
-      <div class="starter_follow">
+      <div class="follow_container">
+        <div class="starter_follow">
 
-      <h2 class="top-title">Welcome to X Restaurant</h2>
-      <hr>
-      <a href="{% url 'order' %}"><button type="button" class="btn btn-default" id="order">Make order</button></a>
-      {% if not request.user.is_authenticated %}
-          <span id="registerHeading">OR</span>
-          <button type="button" class="btn btn-default" id="login">LogIn</button>
-          <div id="loginModule">
+        <h2 class="top-title">Welcome to X Restaurant</h2>
+        <hr>
+        <a href="{% url 'order' %}"><button type="button" class="btn btn-default" id="order">Make order</button></a>
+        {% if not request.user.is_authenticated %}
+            <span id="registerHeading">OR</span>
+            <button type="button" class="btn btn-default" id="login">LogIn</button>
+            <div id="loginModule">
 
-            <form  method="POST">
-                {% csrf_token %}
-              <div class="log">
-                <label for="name">Name:</label> <br>
-                <label for="password">Password:</label>
-              </div>
-              <div class="log">
-                <input type="text" id="name" name="username"> </br>
-                <input type="password" id="password" name="password">
-              </div>
-              <div>
-                <input type="submit" value="Login" />
-              </div>
-            </form>
-
-          </div>
-
-          <div id="registrationModule">
-
-                <h3 id="registerHeading">If you want to join our restaurant commutnity</h3>
-                <a href="#registration"><button type="button" class="btn btn-default dropdown-toggle" id="register">Register</button></a>
-
-          </div>
-      {% endif %}
-      {% if request.user.is_authenticated %}
-        <div id="last_orders" style="background:white;opacity:0.7;width:350px;margin:0 auto;margin-top:20px;">
-            <h2>Последни поръчки</h2>
-            {% for order in request.user.order_set.all %}
-                <div style="border:1px solid black;">
-                     
-                    {% for meal in order.meals.all %}
-                       
-                          <p>{{meal.name}}</p>
-                      
-                    {% endfor %}
-
+              <form  method="POST">
+                  {% csrf_token %}
+                <div class="log">
+                  <label for="name">Name:</label> <br>
+                  <label for="password">Password:</label>
                 </div>
-            {% endfor %}
+                <div class="log">
+                  <input type="text" id="name" name="username"> </br>
+                  <input type="password" id="password" name="password">
+                </div>
+                <div>
+                  <input type="submit" value="Login" />
+                </div>
+              </form>
+
+            </div>
+
+            <div id="registrationModule">
+
+                  <h3 id="registerHeading">If you want to join our restaurant commutnity</h3>
+                  <a href="#registration"><button type="button" class="btn btn-default dropdown-toggle" id="register">Register</button></a>
+
+            </div>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+          <div id="last_orders" style="background:white;opacity:0.7;width:350px;margin:0 auto;margin-top:20px;">
+              <h2>Последни поръчки</h2>
+              {% for order in request.user.order_set.all %}
+                  <div style="border:1px solid black;">
+                       
+                      {% for meal in order.meals.all %}
+                         
+                            <p>{{meal.name}}</p>
+                        
+                      {% endfor %}
+
+                  </div>
+              {% endfor %}
+          </div>
+        {% endif %}
         </div>
-      {% endif %}
+      </div>
+      <div class="direction_container">
+          <div class="direction">
+            <a href="#story"></a>
+          </div>
       </div>
     </div>
-    <div class="direction_container">
-        <div class="direction">
-          <a href="#story"></a>
-        </div>
-    </div>
-  </div>
   <section id="story" class="description_content">
       <div class="limit">
         <div class="description_body margin-right">
@@ -82,42 +82,37 @@
           </div>
         </div>
    </section>
-   {% if not request.user.is_authenticated %}
-    <section id="registration" class="background_content">
+   <section id="registration" class="background_content">
      <h1>Registration!</h1>
    </section>
-   <section class="description_content">
-      <div class="limit">
-        <div class="inner contact">
-                <!-- Form Area -->
-                <div class="contact-form">
-                    <!-- Form -->
-                    <form id="contact-us" method="post" action="{% url 'register' %}">
-                        <!-- Left Inputs -->
-                        {% csrf_token %}
-                       <div class="container col-xs-3 ">
-                            <!-- Name -->
-                            <input type="text" name="username"  required="required" class="form" placeholder="Username" />
-                            <input type="email" name="email"  required="required" class="form" placeholder="Email" />
-                            <input type="password" name="password"  required="required" class="form" placeholder="Password" />
-                            <input type="password" name="password2"  required="required" class="form" placeholder="Repeat password" />
+   {% if not request.user.is_authenticated %}
+
+      <div class="contact-form">
+          <!-- Form -->
+          <form id="contact-us" method="post" action="{% url 'register' %}">
+              <!-- Left Inputs -->
+              {% csrf_token %}
+             <div class="container col-xs-12">
+                  <!-- Name -->
+                  <input type="text" name="username"  required="required" class="form" placeholder="Username" />
+                  <input type="email" name="email"  required="required" class="form" placeholder="Email" />
+                  <input type="password" name="password"  required="required" class="form" placeholder="Password" />
+                  <input type="password" name="password2"  required="required" class="form" placeholder="Repeat password" />
 
 
-                            <!-- Send Button -->
-                            <button type="submit" id="submit" name="submit" class=" form-btn form-btn1 semibold">Registration</button>
-                        </div><!-- End Bottom Submit -->
+                  <!-- Send Button -->
+                  <button type="submit" id="submit" name="submit" class=" form-btn form-btn1 semibold">Register</button>
+              </div><!-- End Bottom Submit -->
 
 
-                        </div><!-- End Left Inputs -->
+              </div><!-- End Left Inputs -->
 
-                        <!-- Clear -->
-                        <div class="clear"></div>
-                    </form>
+              <!-- Clear -->
+              <div class="clear"></div>
+          </form>
 
-                </div><!-- End Contact Form Area -->
-            </div><!-- End Inner -->
-      </div>
-   </section>
+      </div><!-- End Contact Form Area -->
+
    {% endif %}
 
   <div id="map-canvas" class="map">

@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{% static 'website/css/picto-foundry-food.css' %}" />
     <link rel="stylesheet" href="{% static 'website/css/jquery-ui.css' %}">
     <link href="{% static 'website/css/font-awesome.min.css' %}" rel="stylesheet">
-    <link rel="icon" href="favicon-1.ico" type="image/x-icon">
 
 	
 	{% block scripts %}
@@ -77,7 +76,7 @@
 
 	      <!-- Collect the nav links, forms, and other content for toggling -->
 	      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	        <ul class="nav navbar-nav main-nav  clear pull-right">
+	        <ul class="nav navbar-nav main-nav clear ">
 	          	<li><a class="active color_animation" href="{% url 'index' %}">WELCOME</a></li>
 	            <li><a class="color_animation" href="{% url 'order' %}">MY ORDER</a></li>
 	            {% if request.user.is_authenticated %}
