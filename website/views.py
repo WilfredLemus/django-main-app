@@ -146,10 +146,10 @@ def update_order(request):
     if request.method == 'POST':
         order = Order.objects.filter(pk=request.POST.get('order_id'))
         order.is_served = True
-	order.save()
+        order.save()
         return redirect('get_orders')
 
-#login required 
+#login required
 def get_orders(request):
     if request.method == 'GET':
         drinks=Order.objects.filter(meals__type_id__name='drinks', is_paid=False).order_by('table')
@@ -159,7 +159,7 @@ def get_orders(request):
                                        order.table,
                                        order.date,
                                        type(order.meals)))
-        return HttpResponse("Bllalaalal") 
+        return HttpResponse("Bllalaalal")
     else:
         pass
 
