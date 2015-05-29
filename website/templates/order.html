@@ -88,9 +88,6 @@ $.ajaxSetup({
     });
 
     </script>
-
-
-
     <form method="post">
 	    {% csrf_token %}
 	 <input type="text" name="frm" id="frm">
@@ -98,48 +95,22 @@ $.ajaxSetup({
 	<div id="search_field">
 	</div>
 
-
-
-
-
-
-
         <div class="container">
           <div class="row">
             <div id="w">
                 <ul id="filter-list" class="clearfix">
-                  <li class="filter" data-filter="all">Всички</li>
+                  <li class="filter" data-filter="all">All</li>
                   {% for type in types %}
                        <li class="filter" data-filter="{{type.id}}">{{type.name}}</li>
                   {% endfor %}
-                  <!--
-                  <li class="filter" data-filter="breakfast">Breakfast</li>
-
-                  <li class="filter" data-filter="special">Special</li>
-                  <li class="filter" data-filter="desert">Desert</li>
-                  <li class="filter" data-filter="dinner">Dinner</li>
-                  -->
                 </ul><!-- @end #filter-list -->
                 <ul id="portfolio">
-                    <!--
-                    {% for meal in meals %}
-                        <li class="item {{meal.type_id.id}} menuItem"><img src="{% static 'website/images/food_icon01.jpg' %}" alt="Food" >
-                        <h2 class="white orderText">{{meal.name}}</h2>
-                        <p id="description">
-                          {{meal.description}}
-                          <button class="btn btn-default" id="btn-add">Order</button>
-                        </p>
-
-                      </li>
-
-                    {% endfor %}
-                    -->
                     {% for meal in meals %}
                       <li class="item {{meal.type_id.id}} breakfast menuItem"><img src="{% static 'website/images/food_icon01.jpg' %}" alt="Food" >
                         <h2 class="white orderText">{{meal.name}}</h2>
                         <span>{{meal.price}}</span>
                         <p id="description">{{meal.description}}
-                        <button class="btn btn-default" id="btn-add">Order</button>
+                        <button class="btn btn-default" name="{{meal.id}}"  id="btn-add">Order</button>
                         </p>
                       </li>
                     {% endfor %}
@@ -164,11 +135,29 @@ $.ajaxSetup({
             </tr>
           </thead>
           <tfoot>
+            {% for ormeal in order.ordermeal_set.all %}
             <tr>
               <td>
-                <input type="number">
+                {{ormeal.meal.name}}
               </td>
-              <td id="totalPrice">36lv</td>
+              <td>
+                {{ormeal.meal.price}}
+              </td>
+              <td>
+                Ordered
+              </td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <td>
+                Маса: 
+                {% if order == None %}
+                  <input type="text" id="tableNumber" value="" style="width:35px;">
+                {% else %}
+                  <span id="tableNumber">{{order.table}}</span>
+                {% endif %}
+              </td>
+              <td id="totalPrice">{{total_price}}</td>
               <td>
                 <a href="{% url 'finalize' %}"><button class="btn btn-sucess action-delete" id="makeOrder">Order</button></a>
               </td>
@@ -180,16 +169,5 @@ $.ajaxSetup({
         </table>
       </div>
    </section>
-<!---
-   <script id="cartTemplate" type="text/x-handlebars-template">
-
-    <tr>
-      <td>{{name}}</td>
-      <td>{{price}}</td>
-      <td></td>
-    </tr>
-
-  </script>
--->
 
 {% endblock %}

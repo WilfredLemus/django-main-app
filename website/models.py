@@ -47,24 +47,23 @@ class Review(models.Model):
 class Order(models.Model):
     user_id = models.ForeignKey(User)
     seat_number = models.PositiveSmallIntegerField()
+    price = models.IntegerField(default=0)
     table = models.PositiveSmallIntegerField()
     date = models.DateTimeField(auto_now_add=True)
-    meals = models.ManyToManyField(Meal, related_name='all_meals')
     is_served = models.BooleanField()
 
-    # def __str__(self):
-    #     result = ("{} {} {}\n".format(self.user_id, self.table, self.date))
-
-    #     for meal in self.meals.all():
-    #         result += "{}\n".format(str(meal))
-    #     return result
 
     def get_meals(self):
         return [meal for meal in self.meals.all()]
 
 
 class Sell(models.Model):
-    user_id = models.ForeignKey(User)
-    order_id = models.ForeignKey(Order)
+    user = models.ForeignKey(User)
+    order = models.ForeignKey(Order)
     # is_finished = models.BooleanField()
-    is_paid = models.BooleanField()
+    is_paid = models.BooleanField(default=0)
+
+
+class OrderMeal(models.Model):
+    meal = models.ForeignKey(Meal)
+    order = models.ForeignKey(Order)

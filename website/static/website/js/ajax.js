@@ -20,11 +20,20 @@ $(document).ready(function() {
 	$("#makeOrder").click(function () {
 
 		cart = sessionStorage.getItem("cart");
-		console.log(cart)
+		
+		var table_num=parseInt($("#tableNumber").val());
+		var table_num_span = parseInt($("#tableNumber").text());
+		if (isNaN(table_num) && isNaN(table_num_span)){
+			alert("You have to choice table!")
+			return false;
+		}
 		$.ajax({
 			type:"POST",
 			url:"/order/makecurrentorder/",
-			data: {'cart':cart},
+			data: {
+				'cart': cart,
+				'table': table_num
+			},
 			success: function(result){
 				if(result.success){
 					sessionStorage.clear();

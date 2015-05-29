@@ -43,18 +43,19 @@
       {% endif %}
       {% if request.user.is_authenticated %}
         <div id="last_orders" style="background:white;opacity:0.7;width:350px;margin:0 auto;margin-top:20px;">
-            <h2>Последни поръчки</h2>
-            {% for order in request.user.order_set.all %}
-                <div style="border:1px solid black;">
-                     
-                    {% for meal in order.meals.all %}
-                       
-                          <p>{{meal.name}}</p>
-                      
+            <h2>Last orders</h2>
+            {% if orders != None %}
+              {% for order in  orders %}
+                  <div style="border:1px solid black;">
+                    {% for ormeal in order.ordermeal_set.all %}
+                     <p>{{ormeal.meal.name}}</p>
                     {% endfor %}
+                  </div>  
+              {% endfor %}
 
-                </div>
-            {% endfor %}
+            {% else %}
+              No orders
+            {% endif %}
         </div>
       {% endif %}
       </div>

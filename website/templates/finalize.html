@@ -7,27 +7,25 @@
   	<section  class="description_content">
     	<div style="width:500px;margin: 0 auto;margin-top:130px;min-height:350px;">
 	        <a href="{% url 'order' %}"><button type="button" class="btn btn-success btn-lg" id="order-btn">Order more</button></a>
-	        <table>
-	            <tr>
-	                <td>Your order:</td>
-	            </tr>
-	            <tr>
-	                <td>Potatoes</td>
-	            </tr>
-	        </table>
+	      
+	        <div style="border:1px solid gray;">
+		        	<h3>Your order:</h3>
+			        {% for ormeal in order.ordermeal_set.all %}
+			        	<p>{{ormeal.meal.name}} - {{ormeal.meal.price}}</p>
+			        {% endfor %}
+			        <p>Table number:{{order.table}}</p>
+		        	<p>Your order is {{order.price}}</p>
+	        </div>
 
-	        <label>Table number:</label>
-	        <input id="table-number" type="number">
 
-	        <label>You owe:</label>
-	        <span>65 леа</span><br/>
-
-	        <button type="button" class="btn btn-primary pay-button">Pay only my bill <br/>
+	        <button type="button" class="btn btn-primary pay-button">Pay bill <br/>
 	        in cash</button>
-	        <button type="button" class="btn btn-primary pay-button">Pay the whole table's bill <br/>in cash</button><br/>
+	        <button type="button" class="btn btn-primary pay-button">Pay bill <br/>with PayPal</button>
+	       	<!--
 	        <button type="button" class="btn btn-primary pay-button">Pay only my bill <br/>
 	        with PayPal</button>
 	        <button type="button" class="btn btn-primary pay-button">Pay the whole table's bill<br/>with PayPal</button>
+	        -->
 	    </div>
   	</section>
 
