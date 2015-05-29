@@ -1,6 +1,6 @@
 "use strict";
 var OrderApp = (function () {
-  
+
     // var ordersResult;
     var id = 0;
 
@@ -93,8 +93,9 @@ var OrderApp = (function () {
     var addItemToCart = function(name, price) {
         var cart = JSON.parse(sessionStorage.getItem("cart"));
         if (cart === null) {
-            
+
             cart = {
+                table:0,
                 products: []
             }
         };
@@ -108,13 +109,28 @@ var OrderApp = (function () {
         sessionStorage.setItem("cart", JSON.stringify(cart));
     }
 
+    var addTable = function(number) {
+        var cart = JSON.parse(sessionStorage.getItem("cart"));
+        if (cart === null) {
+
+            cart = {
+                table:number,
+                products: []
+            }
+        };
+
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+
     return {
         displayCart: displayCart,
         removeItemFromCart: removeItemFromCart,
         update: update,
         addItemToCart: addItemToCart,
         sendOrder: sendOrder,
-        displayOrderTable: displayOrderTable
+        displayOrderTable: displayOrderTable,
+        addTable:addTable
     };
 })();
 
