@@ -5,7 +5,6 @@ $(document).ready(function(){
     $(this).children("span").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok");
 
     var orderId = $(this).closest("tr").find(".ord_id").html();
-
     $.ajax({
 	type: "GET",
   	url: "/change_state/",
@@ -17,6 +16,26 @@ $(document).ready(function(){
   	}
 	});
 })
+
+  $(".btn-done3").on("click", function(){
+    $(this).closest("tr").removeClass("danger").addClass("success");
+    $(this).children("span").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok");
+
+    var orderId = $(this).closest("tr").find(".ord_id").html();
+
+    $.ajax({
+    type: "GET",
+    url: "/change_state_calls/",
+    data: {
+        table_id: orderId
+    },
+    success: function( ) {
+        console.log("dada")
+    }
+    });
+})
+
+
 
 $(".btn-done2").on("click", function(){
   $(this).closest("tr").removeClass("danger").addClass("success");

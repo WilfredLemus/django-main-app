@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from . models import TypeMeal, Meal, Review, Order, OrderMeal, Sell
+from . models import TypeMeal, Meal, Review, Order, OrderMeal, Sell, Call
 
 
 
@@ -14,3 +14,4 @@ admin.site.register(Order)
 
 admin.site.register(OrderMeal)
 admin.site.register(Sell)
+admin.site.register(Call)

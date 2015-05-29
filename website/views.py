@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 import json
-from .models import Meal, TypeMeal, Order, OrderMeal, Sell
+from .models import Meal, TypeMeal, Order, OrderMeal, Sell, Call
 
 
 def index(request):
@@ -173,9 +173,28 @@ def change_state_accepted(request):
         return HttpResponse("Nice try....")
 
 
+def change_state_calls(request):
+    try:
+        ord_id = request.GET.get('table_id')
+        print(ord_id)
+        Call.objects.filter(table_id=ord_id).delete()
+    except Exception:
+        return HttpResponse("Nice try....")
+
+
+
+def callwaitress(request):
+    if request.method == 'POST':
+        table = request.POST.get('table')
+        call = Call(table_id=table)
+        call.save()
+    else:
+        return HttpResponse("Wrong URL")
+
 #login required
 def get_orders(request):
     sells = Sell.objects.filter(is_paid=0).all()
+    tables = Call.objects.all()
     orders = []
     for sell in sells:
         if not sell.order.is_served:

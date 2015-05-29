@@ -41,6 +41,10 @@ class Review(models.Model):
             self.user_id, self.content, self.date, self.meal)
 
 
+class Call(models.Model):
+    table_id = models.PositiveSmallIntegerField()
+
+
 class Order(models.Model):
     user_id = models.ForeignKey(User)
     seat_number = models.PositiveSmallIntegerField()
