@@ -10,8 +10,6 @@
     <section class="description_content">
       <div class="limit">
 
-
-<h3> Search</h3>
     <script>
 	$( document ).ready(function() {
 	$( "#frm" ).keyup( function(event){
@@ -89,12 +87,15 @@ $.ajaxSetup({
 
     </script>
 
+        <form class="navbar-form"  method="post" role="search" id="searchForm">
+          {% csrf_token %}
+          <input type="text" class="form-control" placeholder="Search" name="frm" id="frm">
+        </form>
 
-
-    <form method="post">
+<!--     <form method="post">
 	    {% csrf_token %}
 	 <input type="text" name="frm" id="frm">
-    </form>
+    </form> -->
 	<div id="search_field">
 	</div>
 
@@ -137,10 +138,10 @@ $.ajaxSetup({
                     {% for meal in meals %}
                       <li class="item {{meal.type_id.id}} breakfast menuItem"><img src="{% static 'website/images/food_icon01.jpg' %}" alt="Food" >
                         <h2 class="white orderText">{{meal.name}}</h2>
-                        <span>{{meal.price}}</span>
-                        <p id="description">{{meal.description}}
-                        <button class="btn btn-default" id="btn-add">Order</button>
-                        </p>
+                        <span>{{meal.price}}лв.</span>
+                        <p id="description">{{meal.description}}</p>
+                        <button class="btn btn-success" id="btn-add"><span class="glyphicon glyphicon-plus"></span></button>
+                        
                       </li>
                     {% endfor %}
 
@@ -168,9 +169,9 @@ $.ajaxSetup({
               <td>
                 <input type="number">
               </td>
-              <td id="totalPrice">36lv</td>
+              <td id="totalPrice">0лв.</td>
               <td>
-                <a href="{% url 'finalize' %}"><button class="btn btn-sucess action-delete">Order</button></a>
+                <a href="{% url 'finalize' %}"><button class="btn btn-sucess action-delete">Next</button></a>
               </td>
             </tr>
           </tfoot>

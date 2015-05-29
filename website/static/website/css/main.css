@@ -1450,21 +1450,29 @@ button#login:hover div#loginModule{
   font-size: 4vw;
   vertical-align: middle;
 }
-
+.menuItem{
+  position: relative;
+}
 .menuItem span{
   color:#fff;
 }
-.menuItem:hover{
-  height: 400px;
-}
 
+.menuItem button{
+  margin:0 auto;
+  float:right;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
 #description{
   display: none;
   font-size: 14px;
   text-align: left;
   color:#fff;
 }
-
+.menuItem img:hover .menuItem {
+  height: 300px
+}
 .menuItem:hover #description{
   display: block;
 }
@@ -1568,4 +1576,11 @@ div#loginButton input{
   padding: 5px;
   float: right;
 
+}
+
+#searchForm input{
+  border:1px solid grey;
+  border-radius: 25px;
+  background-color: rgba(255,255,255,0.7);
+  margin:0 auto;
 }

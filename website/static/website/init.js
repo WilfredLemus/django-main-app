@@ -1,7 +1,28 @@
 $(document).ready(function(){
 
+    // $(".menuItem").on('click', function () {
+    //     var down = $(this).css('height') == '220px';
+    //     if( down ) {
+    //             $(this).animate( {height: '300px'}, 'slow');
+    //          }
+    //      else {
+    //             $(this).animate( {height: '220px'}, 'slow');
+    //          }
+    // });
+
+    $(".menuItem img").hover(
+        function() {
+          console.log("dsa")
+          $( this ).closest("li").animate({ height: '+=200px' });
+          },
+        function() {
+          console.log("dsa")
+          $( this ).closest("li").animate({ height: '-=200px' });
+        }
+    );
+        
     $("button#btn-add").on('click', function () {
-        console.log("dsa")
+
         var name = $(this).closest("li").find("h2").text();
         var price = $(this).closest("li").find("span").text();
         if (name != "" && price != "") {
