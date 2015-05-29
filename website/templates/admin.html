@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="{% static 'website/css/bootstrap.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'website/css/main.css' %}">
+
+</head>
+<body>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+          <tr class="admin-table-row">
+	    <td>Order id</td>
+            <td>Table No</td>
+	    <td>Seat No</td>
+            <td>Order</td>
+            <td>Time</td>
+            <td>Accepted</td>
+            <td>Accept</td>
+	    <td>Served</td>
+          </tr>
+	   {% for order in orders %}
+	    <tr class="danger">
+	    <td class="ord_id" value="5">{{order.id}}</td>
+            <td>{{order.table}}</td>
+	    <td>{{order.seat_number}}</td>
+            <td>{{order.get_meals_printable }}</td>
+            <td>{{order.date}}</td>
+            <td>{{order.is_accepted}}</td>
+            <td><button class="btn-done2" >Done <span class="glyphicon glyphicon-remove"></span></button></td>
+	    <td><button class="btn-done" >Done <span class="glyphicon glyphicon-remove"></span></button></td>
+	  </tr>
+	   {% endfor %}
+        </table>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+          <tr class="admin-table-row">
+            <td>Dish</td>
+            <td>Comment</td>
+            <td>Author</td>
+          </tr>
+          <tr>
+            <td>Хляб с картофи</td>
+            <td>Две въглехидратни гарнитури!! Махай го тоя каиш</td>
+            <td>Марси</td>
+          </tr>
+          <tr>
+            <td>Консоме</td>
+            <td>Неизбистрен бульон!</td>
+            <td>Тонката</td>
+          </tr>
+        </table>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+          <tr class="admin-table-row">
+            <td>Recommendations</td>
+          </tr>
+          <tr>
+            <td>Правописна грешка в предястията</td>
+          </tr>
+        </table>
+    </div>
+
+
+
+
+    <script src="{% static 'website/js/jquery.min.js' %}"></script>
+    <script src="{% static 'website/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'website/app.js' %}"></script>
+</body>
+</html>
