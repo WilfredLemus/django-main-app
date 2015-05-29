@@ -153,28 +153,34 @@ def search(request):
     else:
         return HttpResponse("You are not allowed to view this page!")
 
+def change_state(request):
+    try:
+        ord_id = request.GET.get('order_id')
+        sell = Sell.objects.get(order=ord_id)
+        sell.order.is_served = True
+        sell.order.save()
+    except Exception:
+        return HttpResponse("Nice try....")
+
+
+def change_state_accepted(request):
+    try:
+        ord_id = request.GET.get('order_id')
+        sell = Sell.objects.get(order=ord_id)
+        sell.order.is_accepted = True
+        sell.order.save()
+    except Exception:
+        return HttpResponse("Nice try....")
+
+
 #login required
-def update_order(request):
-    if request.method == 'POST':
-        order = Order.objects.filter(pk=request.POST.get('order_id'))
-        order.is_served = True
-        order.save()
-        return redirect('get_orders')
-
-
-# login required
 def get_orders(request):
-    if request.method == 'GET':
-        drinks=Order.objects.filter(meals__type_id__name='drinks', is_paid=False).order_by('table')
-        kitchen = Order.objects.exclude(meals__type_id__name='drinks', is_paid=False).order_by('table')
-        for order in drinks:
-            print("{} {} {} {}".format(order.seat_number,
-                                       order.table,
-                                       order.date,
-                                       type(order.meals)))
-        return HttpResponse("Bllalaalal")
-    else:
-        pass
+    sells = Sell.objects.filter(is_paid=0).all()
+    orders = []
+    for sell in sells:
+        if not sell.order.is_served:
+            orders.append(sell.order)
+    return render(request, 'admin.html', locals())
 
 
 def makecurrentorder(request):
@@ -194,7 +200,7 @@ def makecurrentorder(request):
         sell = None
 
     if sell is None:
-        order = Order(user_id=request.user, table=table_num, seat_number=0, is_served=0)
+        order = Order(user_id=request.user, table=table_num, seat_number=0, is_served=0,is_accepted=0)
         order.save()
         Sell(user=request.user, order=order).save()
         order_price = 0

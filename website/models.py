@@ -49,12 +49,24 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     # is_paid = models.BooleanField()
     is_served = models.BooleanField()
+    is_accepted = models.BooleanField()
+
 
     def get_price(self):
         return sum([meal.price for meal in self.meals.all()])
 
     def get_meals(self):
         return [meal for meal in self.meals.all()]
+
+    def get_meals_printable(self):
+        meals = self.ordermeal_set.all()
+        all_meals = []
+        meals_set = set()
+        for meal in meals:
+            all_meals.append(meal.meal.name)
+        for meal in all_meals:
+            meals_set.add("{} x{}".format(meal, all_meals.count(meal)))
+        return ",".join(meals_set)
 
 
 class Sell(models.Model):

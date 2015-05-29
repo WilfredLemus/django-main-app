@@ -27,7 +27,11 @@ $(document).ready(function() {
 			alert("You have to choice table!")
 			return false;
 		}
+<<<<<<< HEAD
 
+=======
+        console.log(cart)
+>>>>>>> 9a06c20ace9561a391dc84cc6339a4aa4cbc00af
         if (cart != null){
 
     		$.ajax({
