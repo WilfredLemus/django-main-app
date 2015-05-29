@@ -37,6 +37,7 @@ $(document).ready(function() {
 			success: function(result){
 				if(result.success){
 					sessionStorage.clear();
+					window.location = 'finalize';
 				}
 			},
 			headers: {
