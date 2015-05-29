@@ -161,6 +161,22 @@ def page1(request):
 
     return render(request, 'page1.html')
 
+def page2(request):
+
+    return render(request, 'page2.html')
+
+def page3(request):
+
+    return render(request, 'page3.html')
+
+def page4(request):
+
+    return render(request, 'page4.html')
+
+def page5(request):
+
+    return render(request, 'page5.html')
+
 def get_orders(request):
     if request.method == 'GET':
         drinks=Order.objects.filter(meals__type_id__name='drinks', is_paid=False).order_by('table')
