@@ -27,6 +27,7 @@ $(document).ready(function() {
 			alert("You have to choice table!")
 			return false;
 		}
+        console.log(cart)
         if (cart != null){
 
     		$.ajax({

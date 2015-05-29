@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Meal',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('name', models.CharField(max_length=100)),
                 ('rating', models.FloatField()),
                 ('price', models.FloatField()),
@@ -25,19 +25,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Order',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('seat_number', models.PositiveSmallIntegerField()),
-                ('price', models.IntegerField(default=0)),
+                ('price', models.FloatField(default=0)),
                 ('table', models.PositiveSmallIntegerField()),
                 ('date', models.DateTimeField(auto_now_add=True)),
                 ('is_served', models.BooleanField()),
+                ('is_accepted', models.BooleanField()),
                 ('user_id', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='OrderMeal',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('meal', models.ForeignKey(to='website.Meal')),
                 ('order', models.ForeignKey(to='website.Order')),
             ],
@@ -45,7 +46,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Review',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('content', models.TextField()),
                 ('date', models.DateTimeField(auto_now_add=True)),
                 ('meal_id', models.ForeignKey(to='website.Meal')),
@@ -55,7 +56,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Sell',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('is_paid', models.BooleanField(default=0)),
                 ('order', models.ForeignKey(to='website.Order')),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
@@ -64,7 +65,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TypeMeal',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('name', models.CharField(max_length=50)),
             ],
         ),
