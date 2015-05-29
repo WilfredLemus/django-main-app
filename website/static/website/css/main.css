@@ -294,17 +294,6 @@ IMAGE INTRO BANNER CONTENT
   border-bottom: 8px solid #fff;
 }
 
-.background_content:nth-of-type(2){
-  background: url('../images/beer.jpg') no-repeat center center; 
-  background-size: cover;
-  background-position: 70% 50%;
-}
-
-.background_content:nth-of-type(4) {
-  background: url('../images/bread.jpg') no-repeat center center; 
-  background-size: cover;
-  background-position: 70% 50%;
-}
  #featured.background_content{
   background: url('../images/featured.jpg') no-repeat center center; 
   background-size: cover;
@@ -321,6 +310,7 @@ background-attachment: fixed;
   background: url('../images/reservation-seat.jpg') no-repeat center center; 
   background-size: cover;
   background-position: center;
+  background-position: 70% 50%;
 background-attachment: fixed;
 }
 #registration h1{
@@ -496,7 +486,7 @@ SECOND FOOTER CONTENT
   width: 100%;
   padding: 19px;
   text-align: center;
-  margin-top: -7px;
+  margin-top: 0px;
 }
 
 .sub_footer div p {
@@ -1506,9 +1496,9 @@ label{
 
 .pay-button{
   padding: 20px;
-  margin: 30px;
-  position:relative;
-
+  margin-top: 20px;
+  width:90%;
+  background-color: rgba(0,0,0,0.3);
 }
 
 #order-btn{
@@ -1585,6 +1575,11 @@ div#loginButton input{
   margin:0 auto;
 }
 
+
+div.finalizeContent{
+  margin-top:30px;
+}
+
 #inputMonth{
   width: 50px;
   display: inline-block;
@@ -1595,6 +1590,7 @@ div#loginButton input{
     display: inline-block;
 }
 
+
 #payContainer{
   color: black;
   margin:0 auto;
@@ -1603,3 +1599,4 @@ div#loginButton input{
   /*font-size: 20px;*/
    
 }
+
