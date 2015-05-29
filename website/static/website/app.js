@@ -5,5 +5,6 @@ $(document).ready(function(){
     $(this).children("span").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok");
   })
 
-
 })
+
+

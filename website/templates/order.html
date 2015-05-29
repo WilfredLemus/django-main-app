@@ -2,53 +2,129 @@
 
 {% block content %}
 {% load staticfiles %}
-	
+
 	<section id ="menu" class="background_content">
      <h1><span>Affordable</span> pricing</h1>
    </section>
-   
+
     <section class="description_content">
       <div class="limit">
-        
+
+
+<h3> Search</h3>
+    <script>
+	$( document ).ready(function() {
+	$( "#frm" ).keyup( function(event){
+        if ( $("#frm").val() == ""){
+            $("#search_field").hide();
+        }
+        else {
+            $("#search_field").show();
+        }
+		$.ajax({
+	         type: "POST",
+  	       url: "/search/",
+  	data: {
+    	meal: $("#frm").val()
+  	},
+  	success: function( data ) {
+    	$( "#search_field" ).html( "<strong>" + data + "</strong> " );
+  	}
+	});
+		});
+
+	function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+/*
+The functions below will create a header with csrftoken
+*/
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+function sameOrigin(url) {
+    // test that a given url is a same-origin URL
+    // url could be relative or scheme relative or absolute
+    var host = document.location.host; // host + port
+    var protocol = document.location.protocol;
+    var sr_origin = '//' + host;
+    var origin = protocol + sr_origin;
+    // Allow absolute or scheme relative URLs to same origin
+    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+        (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+        // or any other URL that isn't scheme relative or absolute i.e relative.
+        !(/^(\/\/|http:|https:).*/.test(url));
+}
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+            // Send the token to same-origin, relative URLs only.
+            // Send the token only if the method warrants CSRF protection
+            // Using the CSRFToken value acquired earlier
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+
+
+    });
+
+    </script>
+    <form method="post">
+	    {% csrf_token %}
+	 <input type="text" name="frm" id="frm">
+    </form>
+	<div id="search_field">
+	</div>
+
         <div class="container">
           <div class="row">
             <div id="w">
                 <ul id="filter-list" class="clearfix">
-                  <li class="filter" data-filter="all">Всички</li>
+                  <li class="filter" data-filter="all">All</li>
                   {% for type in types %}
                        <li class="filter" data-filter="{{type.id}}">{{type.name}}</li>
                   {% endfor %}
-                  <!--
-                  <li class="filter" data-filter="breakfast">Breakfast</li>
-                  
-                  <li class="filter" data-filter="special">Special</li>
-                  <li class="filter" data-filter="desert">Desert</li>
-                  <li class="filter" data-filter="dinner">Dinner</li>
-                  -->
-                </ul><!-- @end #filter-list -->    
+                </ul><!-- @end #filter-list -->
                 <ul id="portfolio">
-
                     {% for meal in meals %}
-                        <li class="item {{meal.type_id.id}} menuItem"><img src="{% static 'website/images/food_icon01.jpg' %}" alt="Food" >
+                      <li class="item {{meal.type_id.id}} breakfast menuItem"><img src="{% static 'website/images/food_icon01.jpg' %}" alt="Food" >
                         <h2 class="white orderText">{{meal.name}}</h2>
-                        <p id="description">
-                          {{meal.description}}
-                          <button class="btn btn-default" id="btn-add">Order</button>
+                        <span>{{meal.price}}</span>
+                        <p id="description">{{meal.description}}
+                        <button class="btn btn-default" name="{{meal.id}}"  id="btn-add">Order</button>
                         </p>
-
                       </li>
-
                     {% endfor %}
+
 
                 </ul><!-- @end #portfolio -->
             </div><!-- @end #w -->
           </div>
         </div>
-      </div>  
+      </div>
    </section>
 
   <section  class="description_content">
-    
+
       <div class="table-responsive">
         <table class="table table-hover" id="cartItems">
           <thead>
@@ -59,13 +135,31 @@
             </tr>
           </thead>
           <tfoot>
+            {% for ormeal in order.ordermeal_set.all %}
             <tr>
               <td>
-                <input type="number">
+                {{ormeal.meal.name}}
               </td>
-              <td>36lv</td>
               <td>
-                <a href="{% url 'finalize' %}"><button class="btn.btn-sucess">Order</button></a>
+                {{ormeal.meal.price}}
+              </td>
+              <td>
+                Ordered
+              </td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <td>
+                Маса:
+                {% if order == None %}
+                  <input type="text" id="tableNumber" value="" style="width:35px;">
+                {% else %}
+                  <span id="tableNumber">{{order.table}}</span>
+                {% endif %}
+              </td>
+              <td id="totalPrice">{{total_price}}</td>
+              <td>
+                <button class="btn btn-sucess action-delete" id="makeOrder">Order/Finalize</button>
               </td>
             </tr>
           </tfoot>
@@ -75,16 +169,5 @@
         </table>
       </div>
    </section>
-<!---
-   <script id="cartTemplate" type="text/x-handlebars-template">
-   
-    <tr>
-      <td>{{name}}</td>
-      <td>{{price}}</td>
-      <td></td>
-    </tr>
-    
-  </script>
--->
 
 {% endblock %}

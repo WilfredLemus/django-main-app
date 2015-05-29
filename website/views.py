@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
-# from django.http import HttpResponseBadRequest
+from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from .models import Meal, TypeMeal, Order
+import json
+from .models import Meal, TypeMeal, Order, OrderMeal, Sell
 
 
 def index(request):
@@ -12,7 +13,8 @@ def index(request):
     #     return redirect("index")
     # else:
     context = {
-        'title': 'Restaurant'
+        'title': 'Restaurant',
+        'orders': None
     }
 
     if request.method == "POST":
@@ -22,10 +24,20 @@ def index(request):
 
         if user is not None:
             login(request, user)
+
             return redirect("index")
         else:
             return redirect('index')
     else:
+        if not request.user.is_anonymous():
+            try:
+                sells = Sell.objects.filter(user=request.user, is_paid=1).all()
+                orders = []
+                for sell in sells:
+                    orders.append(sell.order)
+                context['orders'] = orders
+            except Exception:
+                pass
 
         return render(request, "index.html", context)
 
@@ -76,7 +88,7 @@ def register(request):
                 return redirect("index")
 
         else:
-            return render(request, "register.html", locals())
+            return render(request, "index.html", locals())
 
 
 def log(request):
@@ -87,44 +99,112 @@ def order(request):
 
     meals = Meal.objects.all()
     types = TypeMeal.objects.all()
-    type_meals = {}
 
-    # for i in types:
-    #     meals = Meal.objects.filter(type_id=i.id)
-    #     type_meals[i] = meals
+    try:
+        sell = Sell.objects.filter(user=request.user, is_paid=0).get()
+    except Exception:
+        sell = None
 
-    current_user_id = request.user.id
-    print(current_user_id)
+    if sell is None:
+        order = None
+        total_price = 0
+    else:
+        order = sell.order
+        total_price = order.price
 
-    your_order = Order.objects.filter(user_id=current_user_id)
-    print(your_order)
+    # your_order = Order.objects.filter(user_id=current_user_id)
+    # print(your_order)
 
-    # bam = your_order.get_meals()
-    # print (bam)
     return render(request, "order.html", locals())
 
 
 def finalize(request):
 
-    if request.method == "POST":
-        user = request.user
-        meal_id = int(request.POST.get("meal_id"))
-        print(type(meal_id))
-        table_number = int(request.POST.get("table_number"))
+    user = request.user
 
-        meal = Meal.objects.filter(id=meal_id).first()
+    try:
+        sell = Sell.objects.filter(user=user, is_paid=0).get()
+        order = sell.order
+    except Exception:
+        return redirect('order')
 
-        pam = Order.objects.create(
-            user_id=user,
-            is_paid=False,
-            table=table_number,
-        )
-        pam.save()
+    content = {
+        'order': order
+    }
+    return render(request, "finalize.html", content)
 
-        pam.meals.add(meal)
-        pam.save()
 
-    current_user_id = request.user.id
-    your_order = Order.objects.filter(user_id=current_user_id)
+def search(request):
+    if request.method == 'POST' or request.method == "GET":
+        data = request.POST.get("meal")
+        print(data)
+        meals = Meal.objects.filter(name__icontains=data)
+        if meals:
+            data = meals
+        else:
+            return HttpResponse("No meals found!")
+        return render(request,'meals.html', locals())
 
-    return render(request, "finalize.html", locals())
+    # current_user_id = request.user.id
+    # your_order = Order.objects.filter(user_id=current_user_id)
+
+    # return render(request, "finalize.html", locals())
+
+    else:
+        return HttpResponse("You are not allowed to view this page!")
+
+#login required
+def update_order(request):
+    if request.method == 'POST':
+        order = Order.objects.filter(pk=request.POST.get('order_id'))
+        order.is_served = True
+        order.save()
+        return redirect('get_orders')
+
+
+# login required
+def get_orders(request):
+    if request.method == 'GET':
+        drinks=Order.objects.filter(meals__type_id__name='drinks', is_paid=False).order_by('table')
+        kitchen = Order.objects.exclude(meals__type_id__name='drinks', is_paid=False).order_by('table')
+        for order in drinks:
+            print("{} {} {} {}".format(order.seat_number,
+                                       order.table,
+                                       order.date,
+                                       type(order.meals)))
+        return HttpResponse("Bllalaalal")
+    else:
+        pass
+
+
+def makecurrentorder(request):
+
+    cart = json.loads(request.POST.get("cart"))
+
+    meals = cart['products']
+    table_num = request.POST.get("table")
+    print(table_num)
+    response_data = {
+        'success': True
+    }
+
+    try:
+        sell = Sell.objects.filter(user=request.user, is_paid=0).get()
+    except Exception:
+        sell = None
+
+    if sell is None:
+        order = Order(user_id=request.user, table=table_num, seat_number=0, is_served=0)
+        order.save()
+        Sell(user=request.user, order=order).save()
+        order_price = 0
+    else:
+        order = sell.order
+        order_price = order.price
+
+    for meal in meals:
+        OrderMeal(meal=Meal.objects.get(pk=meal['real_id']), order=order).save()
+        order_price += float(meal["price"])
+    order.price = order_price
+    order.save()
+    return HttpResponse(json.dumps(response_data), content_type="application/json")

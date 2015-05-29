@@ -38,23 +38,17 @@ class Review(models.Model):
 
     def __str__(self):
         return "{} {} {} {}".format(
-            self.user_id, self.content, self.date, self.meal
-                                    )
+            self.user_id, self.content, self.date, self.meal)
 
 
 class Order(models.Model):
     user_id = models.ForeignKey(User)
+    seat_number = models.PositiveSmallIntegerField()
+    price = models.FloatField(default=0)
     table = models.PositiveSmallIntegerField()
     date = models.DateTimeField(auto_now_add=True)
-    meals = models.ManyToManyField(Meal)
     # is_paid = models.BooleanField()
-
-    # def __str__(self):
-    #     result = ("{} {} {}\n".format(self.user_id, self.table, self.date))
-
-    #     for meal in self.meals.all():
-    #         result += "{}\n".format(str(meal))
-    #     return result
+    is_served = models.BooleanField()
 
     def get_price(self):
         return sum([meal.price for meal in self.meals.all()])
@@ -64,8 +58,11 @@ class Order(models.Model):
 
 
 class Sell(models.Model):
-    user_id = models.ForeignKey(User)
-    order_id = models.ForeignKey(Order)
-    # is_finished = models.BooleanField()
-    is_paid = models.BooleanField()
-    # call_staff = models.BooleanField()
+    user = models.ForeignKey(User)
+    order = models.ForeignKey(Order)
+    is_paid = models.BooleanField(default=0)
+
+
+class OrderMeal(models.Model):
+    meal = models.ForeignKey(Meal)
+    order = models.ForeignKey(Order)

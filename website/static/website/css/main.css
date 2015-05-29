@@ -133,6 +133,7 @@ h1, h2, p, span, a {
 
 .color_animation {
   word-spacing: 5px;
+  text-decoration: none;
   margin-right: -30px;
   margin-left: -50px !important;
   color: white !important;
@@ -293,11 +294,11 @@ IMAGE INTRO BANNER CONTENT
   border-bottom: 8px solid #fff;
 }
 
-.background_content:nth-of-type(2) {
+/*.background_content#beer {
   background: url('../images/beer.jpg') no-repeat center center; 
   background-size: cover;
   background-position: 70% 50%;
-}
+}*/
 
 .background_content:nth-of-type(4) {
   background: url('../images/bread.jpg') no-repeat center center; 
@@ -1440,6 +1441,9 @@ button#login:hover div#loginModule{
   vertical-align: middle;
 }
 
+.menuItem span{
+  color:#fff;
+}
 .menuItem:hover{
   height: 400px;
 }
@@ -1447,6 +1451,7 @@ button#login:hover div#loginModule{
 #description{
   display: none;
   font-size: 14px;
+  text-align: left;
   color:#fff;
 }
 
@@ -1460,7 +1465,7 @@ label{
   padding: 0;
   margin: 0;
   font-weight: 400;
-  font-size: 2vw;
+  font-size: 25px;
   vertical-align: middle;
   }
 
@@ -1499,4 +1504,19 @@ label{
 .admin-table-row{
   background-color: rgba(128,0,128,1.0);
   color: white;
+}
+
+#map-canvas{
+  height:500px;
+}
+
+.log{
+  display: inline-block;
+}
+
+.log input{
+  margin-top:12px;
+}
+.log input:first-of-type{
+  margin-left:2px;
 }
