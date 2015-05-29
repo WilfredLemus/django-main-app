@@ -14,7 +14,7 @@ class Meal(models.Model):
     rating = models.FloatField()
     price = models.FloatField()
     description = models.TextField(default="")
-    # image = models.ImageField()
+    image = models.ImageField()
     type_id = models.ForeignKey(TypeMeal)
     # menu_id = models.ManyToManyField(Menu) ??
 

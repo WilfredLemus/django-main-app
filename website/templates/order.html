@@ -99,7 +99,8 @@
                 </ul><!-- @end #filter-list -->
                 <ul id="portfolio">
                     {% for meal in meals %}
-                      <li class="item {{meal.type_id.id}} breakfast menuItem"><img src="{% static 'website/images/food_icon01.jpg' %}" alt="Food" >
+                      <li class="item {{meal.type_id.id}} breakfast menuItem">
+                      <img src="/media/{{meal.image}}" alt="Food" width="100px" height="100px" >
                         <h2 class="white orderText">{{meal.name}}</h2>
                         <span>{{meal.price}}</span>
                         <p id="description">{{meal.description}}

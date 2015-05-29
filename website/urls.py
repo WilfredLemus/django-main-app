@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from . import views
+from restaurant import settings
 
 
 urlpatterns = [
@@ -14,4 +15,6 @@ urlpatterns = [
     url(r"^get_orders/$", views.get_orders, name="get_orders"),
     url(r"^order/finalize/$", views.finalize, name="finalize"),
     url(r"^order/makecurrentorder/$", views.makecurrentorder, name="makecurrentorder"),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': settings.MEDIA_ROOT}),
 ]

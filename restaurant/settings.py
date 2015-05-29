@@ -136,3 +136,6 @@ PAYMENTS_PLANS = {
         "trial_period_days": 30
     },
 }
+
+MEDIA_ROOT = 'media/'
+MEDIA_URL = '/media/'
