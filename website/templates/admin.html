@@ -36,6 +36,21 @@
         </table>
     </div>
 
+ <div class="table-responsive">
+        <table class="table table-bordered">
+          <tr class="admin-table-row">
+            <td>Table</td>
+            <td>Remove</td>
+          </tr>
+          {% for table in tables %}
+          <tr>
+            <td class="ord_id">{{ table.table_id }}</td>
+            <td><button class="btn-done3" >Done <span class="glyphicon glyphicon-remove"></span></
+          </tr>
+          {% endfor %}
+        </table>
+    </div>
+
     <div class="table-responsive">
         <table class="table table-bordered">
           <tr class="admin-table-row">
