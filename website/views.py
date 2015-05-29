@@ -59,6 +59,12 @@ def user_logout(request):
     logout(request)
     return redirect("index")
 
+def callwaiter(request):
+    if request.method == "POST":
+        username = request.POST.get("table")
+        print(username)
+        return HttpResponse("dadadada")
+
 
 def register(request):
 
@@ -153,6 +159,7 @@ def search(request):
     else:
         return HttpResponse("You are not allowed to view this page!")
 
+<<<<<<< HEAD
 def change_state(request):
     try:
         ord_id = request.GET.get('order_id')
@@ -188,6 +195,47 @@ def callwaitress(request):
         table = request.POST.get('table')
         call = Call(table_id=table)
         call.save()
+=======
+
+def update_order(request):
+    if request.method == 'POST':
+        order = Order.objects.filter(pk=request.POST.get('order_id'))
+        order.is_served = True
+        order.save()
+        return redirect('get_orders')
+
+
+def page1(request):
+    return render(request, 'page1.html')
+
+
+def page2(request):
+    return render(request, 'page2.html')
+
+
+def page3(request):
+    return render(request, 'page3.html')
+
+
+def page4(request):
+    return render(request, 'page4.html')
+
+
+def page5(request):
+    return render(request, 'page5.html')
+
+
+def get_orders(request):
+    if request.method == 'GET':
+        drinks=Order.objects.filter(meals__type_id__name='drinks', is_paid=False).order_by('table')
+        kitchen = Order.objects.exclude(meals__type_id__name='drinks', is_paid=False).order_by('table')
+        for order in drinks:
+            print("{} {} {} {}".format(order.seat_number,
+                                       order.table,
+                                       order.date,
+                                       type(order.meals)))
+        return HttpResponse("Bllalaalal")
+>>>>>>> jsorder
     else:
         return HttpResponse("Wrong URL")
 

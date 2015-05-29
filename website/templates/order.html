@@ -10,8 +10,6 @@
     <section class="description_content">
       <div class="limit">
 
-
-<h3> Search</h3>
     <script>
 		$( document ).ready(function() {
 		$( "#frm" ).keyup( function(event){
@@ -81,10 +79,15 @@
     });
 
     </script>
-    <form method="post">
-	    {% csrf_token %}
-	 <input type="text" name="frm" id="frm">
-    </form>
+
+    
+
+
+        <form class="navbar-form"  method="post" role="search" id="searchForm">
+          {% csrf_token %}
+          <input type="text" class="form-control" placeholder="Search" name="frm" id="frm">
+        </form>
+
 	<div id="search_field">
 	</div>
 
@@ -102,10 +105,12 @@
                       <li class="item {{meal.type_id.id}} breakfast menuItem">
                       <img src="/media/{{meal.image}}" alt="Food" width="100px" height="100px" >
                         <h2 class="white orderText">{{meal.name}}</h2>
-                        <span>{{meal.price}}</span>
-                        <p id="description">{{meal.description}}
-                        <button class="btn btn-default" name="{{meal.id}}"  id="btn-add">Order</button>
-                        </p>
+
+                        <span>{{meal.price}}лв.</span>
+                        <p id="description">{{meal.description}}</p>
+                        <button class="btn btn-success" name="{{meal.id}}" id="btn-add"><span class="glyphicon glyphicon-plus"></span></button>
+                        
+
                       </li>
                     {% endfor %}
 
@@ -144,6 +149,7 @@
             {% endfor %}
             <tr>
               <td>
+
                 Маса:
                 {% if order == None %}
                   <input type="text" id="tableNumber" value="" style="width:35px;">
@@ -151,9 +157,14 @@
                   <span id="tableNumber">{{order.table}}</span>
                 {% endif %}
               </td>
-              <td id="totalPrice">{{total_price}}</td>
+<!--              <td id="totalPrice">{{total_price}}</td>
               <td>
                 <button class="btn btn-sucess action-delete" id="makeOrder">Order/Finalize</button
+-->
+              <td id="totalPrice">{{total_price}}</td>
+              <td>
+
+                <button class="btn btn-sucess action-delete">Next</button>
               </td>
             </tr>
           </tfoot>

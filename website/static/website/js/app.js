@@ -95,9 +95,11 @@ var OrderApp = (function () {
         var cart = JSON.parse(sessionStorage.getItem("cart"));
 
         if (cart === null) {
+
             var totalPrice=parseFloat($("#totalPrice").text());
 
             cart = {
+                table:0,
                 products: [],
                 total_price:totalPrice
             }
@@ -114,13 +116,28 @@ var OrderApp = (function () {
         sessionStorage.setItem("cart", JSON.stringify(cart));
     }
 
+    var addTable = function(number) {
+        var cart = JSON.parse(sessionStorage.getItem("cart"));
+        if (cart === null) {
+
+            cart = {
+                table:number,
+                products: []
+            }
+        };
+
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+
     return {
         displayCart: displayCart,
         removeItemFromCart: removeItemFromCart,
         update: update,
         addItemToCart: addItemToCart,
         sendOrder: sendOrder,
-        displayOrderTable: displayOrderTable
+        displayOrderTable: displayOrderTable,
+        addTable:addTable
     };
 })();
 
