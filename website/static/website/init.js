@@ -37,12 +37,20 @@ $(document).ready(function(){
             return cookieValue;
         }
     var csrftoken = getCookie('csrftoken');
-        
+
+
+    var cart = JSON.parse(sessionStorage.getItem("cart"));
+    if (cart) {
+        var table=cart.table;
+        console.log(cart.table);
+        $("#finalizeTableNumber").html(table);
+
+    };
+
     $("button#waiter").on('click', function () {
         var cart = JSON.parse(sessionStorage.getItem("cart"));
             if (cart) {
                 var table=cart.table;
-                console.log(table);
                 $.ajax({
                                 type:"POST",
                                 url:"/callwaiter/",
@@ -55,7 +63,7 @@ $(document).ready(function(){
                             })
             }
 
-        });
+    });
 
     $("button#btn-add").on('click', function () {
 
