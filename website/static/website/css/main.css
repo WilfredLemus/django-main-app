@@ -1584,3 +1584,13 @@ div#loginButton input{
   background-color: rgba(255,255,255,0.7);
   margin:0 auto;
 }
+
+#inputMonth{
+  width: 50px;
+  display: inline-block;
+}
+
+#inputYear{
+    width: 50px;
+    display: inline-block;
+}
