@@ -2,9 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Create your models here.
-
-
 class TypeMeal(models.Model):
     name = models.CharField(max_length=50)
 
@@ -47,11 +44,14 @@ class Review(models.Model):
 class Order(models.Model):
     user_id = models.ForeignKey(User)
     seat_number = models.PositiveSmallIntegerField()
-    price = models.IntegerField(default=0)
+    price = models.FloatField(default=0)
     table = models.PositiveSmallIntegerField()
     date = models.DateTimeField(auto_now_add=True)
+    # is_paid = models.BooleanField()
     is_served = models.BooleanField()
 
+    def get_price(self):
+        return sum([meal.price for meal in self.meals.all()])
 
     def get_meals(self):
         return [meal for meal in self.meals.all()]
@@ -60,7 +60,6 @@ class Order(models.Model):
 class Sell(models.Model):
     user = models.ForeignKey(User)
     order = models.ForeignKey(Order)
-    # is_finished = models.BooleanField()
     is_paid = models.BooleanField(default=0)
 
 

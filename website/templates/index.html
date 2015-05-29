@@ -9,7 +9,7 @@
     <div class="follow_container">
       <div class="starter_follow">
 
-      <h2 class="top-title">Welcome to X Restaurant</h2>
+      <h2 class="top-title">Welcome {{request.user.username}} to X Restaurant</h2>
       <hr>
       <a href="{% url 'order' %}"><button type="button" class="btn btn-default" id="order">Make order</button></a>
       {% if not request.user.is_authenticated %}
@@ -43,14 +43,16 @@
       {% endif %}
       {% if request.user.is_authenticated %}
         <div id="last_orders" style="background:white;opacity:0.7;width:350px;margin:0 auto;margin-top:20px;">
+
             <h2>Last orders</h2>
             {% if orders != None %}
               {% for order in  orders %}
                   <div style="border:1px solid black;">
                     {% for ormeal in order.ordermeal_set.all %}
                      <p>{{ormeal.meal.name}}</p>
+
                     {% endfor %}
-                  </div>  
+                  </div>
               {% endfor %}
 
             {% else %}
@@ -125,7 +127,12 @@
       <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1467.3122108906991!2d23.372732499999998!3d42.64812150000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa8690d207660d%3A0xb15e1977e29b521e!2sbul.+%22Andrey+Lyapchev%22+66%2C+1784+Sofia!5e0!3m2!1sen!2sbg!4v1432822696753" width="100%" height="400px" frameborder="0" style="border:0"></iframe> -->
   </div>
 
+    {# <div id="contact"  class="map"> #}
+{#         <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d26081603.29442047!2d-95.677068!3d37.0625!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1421239704485" width="100%" height="400px" frameborder="0" style="border:0"></iframe> #}
+    {# </div> #}
+
   <div id="live-geolocation"></div>
+
 
 
 {% endblock %}

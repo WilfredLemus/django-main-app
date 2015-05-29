@@ -7,12 +7,15 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('website', '0007_order_price'),
+        ('checkout', '0001_initial'),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='order',
-            name='meals',
+            model_name='userstripe',
+            name='user',
+        ),
+        migrations.DeleteModel(
+            name='userStripe',
         ),
     ]

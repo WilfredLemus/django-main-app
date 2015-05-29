@@ -150,7 +150,7 @@ $.ajaxSetup({
             {% endfor %}
             <tr>
               <td>
-                Маса: 
+                Маса:
                 {% if order == None %}
                   <input type="text" id="tableNumber" value="" style="width:35px;">
                 {% else %}
@@ -159,7 +159,7 @@ $.ajaxSetup({
               </td>
               <td id="totalPrice">{{total_price}}</td>
               <td>
-                <a href="{% url 'finalize' %}"><button class="btn btn-sucess action-delete" id="makeOrder">Order</button></a>
+                <button class="btn btn-sucess action-delete" id="makeOrder">Order/Finalize</button>
               </td>
             </tr>
           </tfoot>
