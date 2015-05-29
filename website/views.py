@@ -151,6 +151,10 @@ def update_order(request):
         return redirect('get_orders')
 
 #login required
+def page1(request):
+
+    return render(request, 'page1.html')
+
 def get_orders(request):
     if request.method == 'GET':
         drinks=Order.objects.filter(meals__type_id__name='drinks', is_paid=False).order_by('table')

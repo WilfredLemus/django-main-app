@@ -8,6 +8,7 @@ urlpatterns = [
     url(r"^logout/$", views.user_logout, name="logout"),
     url(r"^login/$", views.log, name="log"),
     url(r"^order/$", views.order, name="order"),
+    url(r"^page1/$", views.page1, name="page1"),
     url(r"^search/$", views.search, name="search"),
     url(r"^get_orders/$", views.get_orders, name="get_orders"),
     url(r"^order/finalize/$", views.finalize, name="finalize"),

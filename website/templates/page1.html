@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <p id="1"> 1 </p>
+
+    {% load staticfiles %}
+
+    <script type="text/javascript" src="{% static 'website/js/jquery-1.10.2.min.js' %}"> </script>
+    <script type="text/javascript" src="{% static 'website/js/app.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var tableNumber = $("#1").html();
+            console.log(tableNumber);
+
+            OrderApp.addTable(tableNumber);
+            window.location = "http://localhost:8000/";
+
+        }) 
+    </script>
+</body>
+</html>
