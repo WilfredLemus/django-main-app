@@ -1590,9 +1590,19 @@ div.finalizeContent{
     display: inline-block;
 }
 
+
 #waiter{
   float:right;
   margin-top:8px;
   margin-right:10px;
 }
 
+
+#payContainer{
+  color: black;
+  margin:0 auto;
+  margin-top: 20px;
+  padding-top: 20px;
+  /*font-size: 20px;*/
+   
+}
