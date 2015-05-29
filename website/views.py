@@ -159,7 +159,6 @@ def search(request):
     else:
         return HttpResponse("You are not allowed to view this page!")
 
-<<<<<<< HEAD
 def change_state(request):
     try:
         ord_id = request.GET.get('order_id')
@@ -189,13 +188,12 @@ def change_state_calls(request):
         return HttpResponse("Nice try....")
 
 
-
 def callwaitress(request):
     if request.method == 'POST':
         table = request.POST.get('table')
         call = Call(table_id=table)
         call.save()
-=======
+
 
 def update_order(request):
     if request.method == 'POST':
@@ -235,7 +233,6 @@ def get_orders(request):
                                        order.date,
                                        type(order.meals)))
         return HttpResponse("Bllalaalal")
->>>>>>> jsorder
     else:
         return HttpResponse("Wrong URL")
 
