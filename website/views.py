@@ -112,6 +112,8 @@ def order(request):
         order = sell.order
         total_price = order.price
 
+    # your_order = Order.objects.filter(user_id=current_user_id)
+    # print(your_order)
 
     return render(request, "order.html", locals())
 
@@ -142,6 +144,11 @@ def search(request):
         else:
             return HttpResponse("No meals found!")
         return render(request,'meals.html', locals())
+
+    # current_user_id = request.user.id
+    # your_order = Order.objects.filter(user_id=current_user_id)
+
+    # return render(request, "finalize.html", locals())
 
     else:
         return HttpResponse("You are not allowed to view this page!")

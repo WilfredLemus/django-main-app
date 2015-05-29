@@ -7,13 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('website', '0005_auto_20150528_2126'),
+        ('website', '0001_initial'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='sell',
-            name='is_paid',
-            field=models.BooleanField(default=0),
+            model_name='order',
+            name='price',
+            field=models.FloatField(default=0),
         ),
     ]

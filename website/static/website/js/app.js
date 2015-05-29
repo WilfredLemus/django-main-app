@@ -1,6 +1,6 @@
 "use strict";
 var OrderApp = (function () {
-  
+
     // var ordersResult;
     var id = 0;
 
@@ -65,7 +65,7 @@ var OrderApp = (function () {
         for (var i=0;i<cart.products.length;i++){
             if (cart.products[i].id === inerId){
                 cart.total_price -= parseFloat(cart.products[i].price)
-                cart.products.splice(i,1);              
+                cart.products.splice(i,1);
                 break;
             }
         }
@@ -93,10 +93,10 @@ var OrderApp = (function () {
 
     var addItemToCart = function(name, price, real_id) {
         var cart = JSON.parse(sessionStorage.getItem("cart"));
-        
+
         if (cart === null) {
-            var totalPrice=parseInt($("#totalPrice").text());
-           
+            var totalPrice=parseFloat($("#totalPrice").text());
+
             cart = {
                 products: [],
                 total_price:totalPrice
@@ -106,10 +106,10 @@ var OrderApp = (function () {
         cart.products.push({
             id: id,
             name: name,
-            price:  parseInt(price),
+            price:  parseFloat(price),
             real_id: real_id
         })
-        cart.total_price +=  parseInt(price);
+        cart.total_price +=  parseFloat(price);
 
         sessionStorage.setItem("cart", JSON.stringify(cart));
     }

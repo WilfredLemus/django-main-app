@@ -4,6 +4,7 @@ $(document).ready(function(){
         var real_id = $(this).attr("name");
         var name = $(this).closest("li").find("h2").text();
         var price = $(this).closest("li").find("span").text();
+        console.log(price)
         if (name != "" && price != "" && real_id != "") {
             OrderApp.addItemToCart(name, price, real_id);
         }
@@ -33,9 +34,11 @@ function makeTable(){
     var cart = JSON.parse(sessionStorage.getItem("cart"));
     if (cart) {
         var items=cart.products;
+        var totalPrice=0;
         var totalPrice=parseFloat($("#totalPrice").text());
         for(var item in items){
-            //totalPrice+=parseInt(items[item].price);
+            totalPrice+=parseFloat(items[item].price);
+            console.log(items[item].price);
             var tr = $("<tr></tr>");
             var tdName = $("<td></td>").append(items[item].name);
             var tdPrice = $("<td></td>").append(items[item].price);

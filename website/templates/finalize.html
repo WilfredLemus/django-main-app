@@ -7,7 +7,7 @@
   	<section  class="description_content">
     	<div style="width:500px;margin: 0 auto;margin-top:130px;min-height:350px;">
 	        <a href="{% url 'order' %}"><button type="button" class="btn btn-success btn-lg" id="order-btn">Order more</button></a>
-	      
+
 	        <div style="border:1px solid gray;">
 		        	<h3>Your order:</h3>
 			        {% for ormeal in order.ordermeal_set.all %}
@@ -17,15 +17,11 @@
 		        	<p>Your order is {{order.price}}</p>
 	        </div>
 
+            peshkoooo {{order.id}}
+	        {# <label>You owe:</label> #}
+            <a href="{% url 'checkout' order.id %}"><button type="button" class="btn btn-primary pay-button">Pay bill <br/>in cash</button>
+	        <button type="button" class="btn btn-primary pay-button">Pay bill <br/>with Card</button>
 
-	        <button type="button" class="btn btn-primary pay-button">Pay bill <br/>
-	        in cash</button>
-	        <button type="button" class="btn btn-primary pay-button">Pay bill <br/>with PayPal</button>
-	       	<!--
-	        <button type="button" class="btn btn-primary pay-button">Pay only my bill <br/>
-	        with PayPal</button>
-	        <button type="button" class="btn btn-primary pay-button">Pay the whole table's bill<br/>with PayPal</button>
-	        -->
 	    </div>
   	</section>
 
