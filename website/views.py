@@ -47,6 +47,12 @@ def user_logout(request):
     logout(request)
     return redirect("index")
 
+def callwaiter(request):
+    if request.method == "POST":
+        username = request.POST.get("table")
+        print(username)
+        return HttpResponse("dadadada")
+
 
 def register(request):
 

@@ -1590,3 +1590,9 @@ div.finalizeContent{
     display: inline-block;
 }
 
+#waiter{
+  float:right;
+  margin-top:8px;
+  margin-right:10px;
+}
+
