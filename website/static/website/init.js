@@ -10,16 +10,7 @@ $(document).ready(function(){
     //          }
     // });
 
-    $(".menuItem img").hover(
-        function() {
-          console.log("dsa")
-          $( this ).closest("li").animate({ height: '+=200px' });
-          },
-        function() {
-          console.log("dsa")
-          $( this ).closest("li").animate({ height: '-=200px' });
-        }
-    );
+
 
     function getCookie(name) {
             var cookieValue = null;
@@ -41,7 +32,7 @@ $(document).ready(function(){
 
     var cart = JSON.parse(sessionStorage.getItem("cart"));
     if (cart) {
-        var table=cart.table;
+        var table=1;
         console.log(cart.table);
         $("#finalizeTableNumber").html(table);
 

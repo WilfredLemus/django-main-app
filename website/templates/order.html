@@ -80,7 +80,11 @@
 
     </script>
 
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> 0b018ca39765f8410a49c061b8d4baa861c7b556
 
 
         <form class="navbar-form"  method="post" role="search" id="searchForm">
@@ -88,7 +92,11 @@
           <input type="text" class="form-control" placeholder="Search" name="frm" id="frm">
         </form>
 
+<<<<<<< HEAD
+
+=======
 	
+>>>>>>> 0b018ca39765f8410a49c061b8d4baa861c7b556
 	</div>
   <div id="search_field">
   </div>
@@ -106,12 +114,21 @@
                     {% for meal in meals %}
                       <li class="item {{meal.type_id.id}} breakfast menuItem">
                       <img src="/media/{{meal.image}}" alt="Food" width="100px" height="100px" >
+<<<<<<< HEAD
+                        <h2 class="white orderText" style="color:black;font-size:20px;">{{meal.name}}</h2>
+
+                        <span style="color:black">{{meal.price}}лв.</span>
+                        <p id="description" style="color:black">{{meal.description}}</p>
+                        <button class="btn btn-success" name="{{meal.id}}" id="btn-add"><span class="glyphicon glyphicon-plus"></span></button>
+
+=======
                         <h2 class="white orderText">{{meal.name}}</h2>
 
                         <span>{{meal.price}}лв.</span>
                         <p id="description">{{meal.description}}</p>
                         <button class="btn btn-success" name="{{meal.id}}" id="btn-add"><span class="glyphicon glyphicon-plus"></span></button>
                         
+>>>>>>> 0b018ca39765f8410a49c061b8d4baa861c7b556
 
                       </li>
                     {% endfor %}

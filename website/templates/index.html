@@ -9,7 +9,7 @@
       <div class="follow_container">
         <div class="starter_follow">
 
-        <h2 class="top-title">Welcome to X Restaurant</h2>
+        <h2 class="top-title">Welcome {{request.user.username}} to X Restaurant</h2>
         <hr>
         <a href="{% url 'order' %}"><button type="button" class="btn btn-default" id="order">Make order</button></a>
         {% if not request.user.is_authenticated %}
@@ -62,7 +62,7 @@
         </div>
       {% endif %}
       </div>
-      
+
     </div>
   </div>
   <section id="story" class="description_content">
@@ -88,7 +88,6 @@
      <h1>Registration!</h1>
    </section>
 
-   
 
       <div class="contact-form">
           <!-- Form -->
@@ -117,7 +116,7 @@
       </div><!-- End Contact Form Area -->
 
    {% endif %}
-  
+
   <section id="map-canvas" class="background_content map">
 
    </section>

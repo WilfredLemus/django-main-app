@@ -99,7 +99,7 @@ var OrderApp = (function () {
             var totalPrice=parseFloat($("#totalPrice").text());
 
             cart = {
-                table:0,
+                table:1,
                 products: [],
                 total_price:totalPrice
             }

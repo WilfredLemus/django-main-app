@@ -62,6 +62,8 @@ def user_logout(request):
 def callwaiter(request):
     if request.method == "POST":
         username = request.POST.get("table")
+        a = Call(table_id=username)
+        a.save()
         print(username)
         return HttpResponse("dadadada")
 

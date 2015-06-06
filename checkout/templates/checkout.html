@@ -1,4 +1,6 @@
+{% extends "base.html" %}
 
+{% block content %}
  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 
@@ -44,7 +46,7 @@ $(document).ready(function(){
 
 </script>
 
-
+<section class="description_content" style="margin-top:100px;">
 <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
 
@@ -59,20 +61,20 @@ $(document).ready(function(){
             </label>
           </div>
 
-          <div class="form-row">
+          <div class="form-row" style="color:black;">
             <label>
               <span>CVC</span>
-              <input type="text" size="4" data-stripe="cvc"/>
+              <input type="text" size="4" data-stripe="cvc" style="color:black;" />
             </label>
           </div>
 
           <div class="form-row">
             <label>
               <span>Expiration (MM/YYYY)</span>
-              <input type="text" size="2" data-stripe="exp-month"/>
+              <input type="text" size="2" data-stripe="exp-month" style="color:black;"/>
             </label>
             <span> / </span>
-            <input type="text" size="4" data-stripe="exp-year"/>
+            <input type="text" size="4" data-stripe="exp-year" style="color:black;"/>
           </div>
 
 
@@ -82,3 +84,6 @@ $(document).ready(function(){
 
     </div>
 </div>
+</section>
+
+{% endblock %}
