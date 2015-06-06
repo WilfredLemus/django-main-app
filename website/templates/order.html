@@ -7,11 +7,9 @@
      <h1><span>Affordable</span> pricing</h1>
    </section>
 
-    <section class="description_content">
+  <section class="description_content">
       <div class="limit">
 
-
-<h3> Search</h3>
     <script>
 		$( document ).ready(function() {
 		$( "#frm" ).keyup( function(event){
@@ -81,12 +79,19 @@
     });
 
     </script>
-    <form method="post">
-	    {% csrf_token %}
-	 <input type="text" name="frm" id="frm">
-    </form>
-	<div id="search_field">
+
+
+
+
+        <form class="navbar-form"  method="post" role="search" id="searchForm">
+          {% csrf_token %}
+          <input type="text" class="form-control" placeholder="Search" name="frm" id="frm">
+        </form>
+
+
 	</div>
+  <div id="search_field">
+  </div>
 
         <div class="container">
           <div class="row">
@@ -101,11 +106,13 @@
                     {% for meal in meals %}
                       <li class="item {{meal.type_id.id}} breakfast menuItem">
                       <img src="/media/{{meal.image}}" alt="Food" width="100px" height="100px" >
-                        <h2 class="white orderText">{{meal.name}}</h2>
-                        <span>{{meal.price}}</span>
-                        <p id="description">{{meal.description}}
-                        <button class="btn btn-default" name="{{meal.id}}"  id="btn-add">Order</button>
-                        </p>
+                        <h2 class="white orderText" style="color:black;font-size:20px;">{{meal.name}}</h2>
+
+                        <span style="color:black">{{meal.price}}лв.</span>
+                        <p id="description" style="color:black">{{meal.description}}</p>
+                        <button class="btn btn-success" name="{{meal.id}}" id="btn-add"><span class="glyphicon glyphicon-plus"></span></button>
+
+
                       </li>
                     {% endfor %}
 
@@ -144,6 +151,7 @@
             {% endfor %}
             <tr>
               <td>
+
                 Маса:
                 {% if order == None %}
                   <input type="text" id="tableNumber" value="" style="width:35px;">
@@ -151,9 +159,14 @@
                   <span id="tableNumber">{{order.table}}</span>
                 {% endif %}
               </td>
-              <td id="totalPrice">{{total_price}}</td>
+<!--              <td id="totalPrice">{{total_price}}</td>
               <td>
                 <button class="btn btn-sucess action-delete" id="makeOrder">Order/Finalize</button
+-->
+              <td id="totalPrice">{{total_price}}</td>
+              <td>
+
+                <button class="btn btn-sucess action-delete" id="makeOrder">Order/Finalize</button>
               </td>
             </tr>
           </tfoot>

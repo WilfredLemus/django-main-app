@@ -1,7 +1,65 @@
 $(document).ready(function(){
 
+    // $(".menuItem").on('click', function () {
+    //     var down = $(this).css('height') == '220px';
+    //     if( down ) {
+    //             $(this).animate( {height: '300px'}, 'slow');
+    //          }
+    //      else {
+    //             $(this).animate( {height: '220px'}, 'slow');
+    //          }
+    // });
+
+
+
+    function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    var csrftoken = getCookie('csrftoken');
+
+
+    var cart = JSON.parse(sessionStorage.getItem("cart"));
+    if (cart) {
+        var table=1;
+        console.log(cart.table);
+        $("#finalizeTableNumber").html(table);
+
+    };
+
+    $("button#waiter").on('click', function () {
+        var cart = JSON.parse(sessionStorage.getItem("cart"));
+            if (cart) {
+                var table=cart.table;
+                $.ajax({
+                                type:"POST",
+                                url:"/callwaiter/",
+                                data: {
+                                    'table': table
+                                },
+                                headers: {
+                                    'X-CSRFToken': csrftoken
+                                }
+                            })
+            }
+
+    });
+
     $("button#btn-add").on('click', function () {
+
         var real_id = $(this).attr("name");
+
         var name = $(this).closest("li").find("h2").text();
         var price = $(this).closest("li").find("span").text();
         console.log(price)

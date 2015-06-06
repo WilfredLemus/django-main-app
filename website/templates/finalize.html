@@ -4,9 +4,55 @@
 
     {% load staticfiles %}
 
-  	<section  class="description_content">
+	<section class="description_content row" id="finalizeSection" style="min-height:620px;">
+	 
+	 <div class="table-responsive col-xs-12 col-sm-7 finalizeContent">
+	    <table class="table table-hover" id="finalizeTable">
+	      <thead>
+	        <tr>
+	          <th>Name</th>
+	          <th>Price</th>
+	          <th></th>
+	        </tr>
+
+	      </thead>
+	      <tfoot>
+	      	{% for ormeal in order.ordermeal_set.all %}
+	         <tr>
+	          <td>{{ormeal.meal.name}}</td>
+	          <td>{{ormeal.meal.price}}</td>
+	          <td> </td>
+	        </tr>
+	       {% endfor %}
+	        <tr>
+	          <td>
+	            Маса<span id="finalizeTableNumber"></span>
+	          </td>
+	          <td id="totalPrice">{{order.price}}лв.</td>
+	          <td>
+	          </td>
+	        </tr>
+	      </tfoot>
+	  
+	    </table>
+	  </div>
+
+	  <div class="col-xs-12 col-sm-5 finalizeContent">
+	  	<a href="{% url 'order' %}"><button type="button" style="margin-top:200px;" class="btn btn-success btn-lg" id="order-btn">Order more</button></a>
+	  	<button type="button" class="btn pay-button">Pay only my bill in cash</button>
+	  	<a href="{% url 'checkout' order.id %}">
+	  		<button type="button" class="btn pay-button">Pay only my bill with PayPal</button>
+	  	</a>
+	  	
+	  </div>
+	</section>
+
+	  
+ 
+
+  	<!--<section  class="description_content">
     	<div style="width:500px;margin: 0 auto;margin-top:130px;min-height:350px;">
-	        <a href="{% url 'order' %}"><button type="button" class="btn btn-success btn-lg" id="order-btn">Order more</button></a>
+	        
 
 	        <div style="border:1px solid gray;">
 		        	<h3>Your order:</h3>
@@ -22,7 +68,15 @@
             <a href="{% url 'checkout' order.id %}"><button type="button" class="btn btn-primary pay-button">Pay bill <br/>in cash</button>
 	        <button type="button" class="btn btn-primary pay-button">Pay bill <br/>with Card</button>
 
+<<<<<<< HEAD
+=======
+	        <button type="button" class="btn btn-primary pay-button">Pay the bill <br/>
+	        in cash</button>
+	        <button type="button" class="btn btn-primary pay-button">Pay the bill <br/>
+	        with PayPal</button>
+
+>>>>>>> jsorder
 	    </div>
-  	</section>
+  	</section>-->
 
 {% endblock %}

@@ -3,7 +3,7 @@ Theme Name: Restaurant
 Theme URI: http://themewagon.com/demo/Restaurant/
 Author: ThemeWagon
 Author URI: http://themewagon.com/
-Description: 
+Description:
 Version: 1.0
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -16,7 +16,7 @@ GLOBAL
 
 .right-text{
   background: rgba(191, 206, 191, 1);
-  padding:15px 0 15px 25px; 
+  padding:15px 0 15px 25px;
   text-align: left !important;
 }
 .right-text p{
@@ -24,7 +24,7 @@ GLOBAL
 }
 
 *, *:before, *:after {
-  -moz-box-sizing: border-box;  
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
@@ -72,13 +72,27 @@ GLOBAL
 .carousel-slide{
   float: right !important;
   margin-right: -15px;
-} 
-li.item{
-   position: relative; 
-   width: 100%; /* for IE 6 */
-
-  background: rgba(129, 24, 24, 1);
 }
+li.item{
+   position: relative;
+   width: 100%; /* for IE 6 */
+    color:black;
+  background: rgba(129, 24, 24, 1);
+
+  border-radius: 5px;
+  padding: 5px;
+
+  background: #eeeeee; /* Old browsers */
+background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+
+}
+
 
 .icon_knife {
   width: 40px;
@@ -90,7 +104,7 @@ li.item{
     -moz-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
     transition-duration: 0.5s;
-     
+
     -webkit-transition-property: -webkit-transform;
     -moz-transition-property: -moz-transform;
     -o-transition-property: -o-transform;
@@ -169,19 +183,19 @@ background:url('../../s3.amazonaws.com/onepagelove/one-page-love-award-left.png'
 }
 
 
-.opm-ribbon { 
-position:absolute; 
-top:300px; 
-left:0px; 
-z-index:1; 
-} 
+.opm-ribbon {
+position:absolute;
+top:300px;
+left:0px;
+z-index:1;
+}
 
-.opm-ribbon a { 
-width:65px; 
-height:85px; 
-text-indent:-9999px; 
-display:block; 
-background:url('../../s3.amazonaws.com/onepagemania/opm-badge.png') no-repeat; 
+.opm-ribbon a {
+width:65px;
+height:85px;
+text-indent:-9999px;
+display:block;
+background:url('../../s3.amazonaws.com/onepagemania/opm-badge.png') no-repeat;
 }
 
 
@@ -223,7 +237,7 @@ INTRO CONTAINER
   background: url('../images/steak.jpg') no-repeat center center;
    background-size: cover;
    text-align: center;
-   background-position: center;  
+   background-position: center;
 }
 
 
@@ -251,10 +265,10 @@ INTRO CONTAINER
  }
 
  .second-title {
-    font-weight: lighter; 
-    font-size: 30px; 
+    font-weight: lighter;
+    font-size: 30px;
     font-size: 3vw;
-    font-style: italic; 
+    font-style: italic;
     text-transform: capitalize;
 }
 
@@ -294,37 +308,30 @@ IMAGE INTRO BANNER CONTENT
   border-bottom: 8px solid #fff;
 }
 
-/*.background_content#beer {
-  background: url('../images/beer.jpg') no-repeat center center; 
-  background-size: cover;
-  background-position: 70% 50%;
-}*/
-
-.background_content:nth-of-type(4) {
-  background: url('../images/bread.jpg') no-repeat center center; 
-  background-size: cover;
-  background-position: 70% 50%;
-}
  #featured.background_content{
-  background: url('../images/featured.jpg') no-repeat center center; 
+  background: url('../images/featured.jpg') no-repeat center center;
   background-size: cover;
   background-position: center;
 background-attachment: fixed;
 }
  #menu.background_content{
-  background: url('../images/pricing.jpg') no-repeat center center; 
+  background: url('../images/pricing.jpg') no-repeat center center;
   background-size: cover;
   background-position: center;
 background-attachment: fixed;
 }
 #registration.background_content{
-  background: url('../images/reservation-seat.jpg') no-repeat center center; 
+  background: url('../images/reservation-seat.jpg') no-repeat center center;
   background-size: cover;
   background-position: center;
+  background-position: 70% 50%;
 background-attachment: fixed;
 }
+#registration h1{
+  font-size:6vw;
+}
 #bread.background_content{
-  background: url('../images/breakfast.jpg') no-repeat center center; 
+  background: url('../images/breakfast.jpg') no-repeat center center;
   background-size: cover;
   background-position: center;
 background-attachment: fixed;
@@ -343,7 +350,7 @@ DESCRIPTION BODY CONTENT
   z-index: 99;
   position: relative;
   background: white;
-  text-align: center; 
+  text-align: center;
 }
 .description_content1 {
   width: 100%;
@@ -352,7 +359,7 @@ DESCRIPTION BODY CONTENT
   z-index: 99;
   position: relative;
   background: white;
-  text-align: center; 
+  text-align: center;
 }
 
 
@@ -406,7 +413,7 @@ FIRST FOOTER CONTENT
   text-align: center;
   padding: 1px 55px;
 }
-@media (min-width: 1200px) { 
+@media (min-width: 1200px) {
   .first_footer {
     background-color: #1E1E1E;
     width: 100%;
@@ -433,7 +440,7 @@ FIRST FOOTER CONTENT
   margin: 40px 0 0 0;
 }
 
-  .social_info, 
+  .social_info,
   .social_icons {
   margin: 18px 0 50px 0;
 }
@@ -493,7 +500,7 @@ SECOND FOOTER CONTENT
   width: 100%;
   padding: 19px;
   text-align: center;
-  margin-top: -7px;
+  margin-top: 0px;
 }
 
 .sub_footer div p {
@@ -530,18 +537,22 @@ SECOND FOOTER CONTENT
 MEDIA QUERIES TABLET
 =========================*/
 
-
-@media (min-width: 400px) { 
+@media (max-width: 400px) {
+  .follow_container {
+    top: 20%;
+  }
+}
+@media (min-width: 400px) {
   .starter_container {
   height: 70%;
   }
 
 .follow_container {
-  top: 15%;
+  top: 20%;
 }
 
 .background_content h1 {
-  top: 33%;
+  top: 53%;
 }
 
 .direction a {
@@ -574,7 +585,7 @@ MEDIA QUERIES TABLET
     -moz-transition: border-color 0.5s ease-in-out;
     -o-transition: border-color 0.5s ease-in-out;
     -ms-transition: border-color 0.5s ease-in-out;
-    transition: border-color 0.5s ease-in-out;  
+    transition: border-color 0.5s ease-in-out;
     background-size: 22px; /*This is based off of width*/
 }
 
@@ -590,8 +601,8 @@ MEDIA QUERIES TABLET
 MEDIA QUERIES TABLET
 =========================*/
 
-@media (min-width: 660px) { 
-  
+@media (min-width: 660px) {
+
 .starter_container {
   height: 100%;
 }
@@ -677,7 +688,7 @@ nav li{
     border: 5px solid rgba(0,0,0,0);
     display: inline-block;
     width: 45px;
-    height: 45px;  
+    height: 45px;
     background-size: 30px; /*This is based off of width*/
 }
 
@@ -863,7 +874,7 @@ IMAGE INTRO BANNER CONTENT
   height: 570px;
   background-color: white;
   margin: 0 auto 0 auto;
-  z-index: 98;
+  z-index: 99;
   text-align: center;
 }
 
@@ -955,7 +966,7 @@ MEDIA QUERIE DESKTOP
 =========================*/
 
 
-@media (min-width: 1100px) { 
+@media (min-width: 1100px) {
 
 .starter_container {
   background-attachment: fixed;
@@ -1115,7 +1126,7 @@ h1 {
 .image_box_story li:nth-of-type(3),
 .image_box_story li:nth-of-type(4) {
   background-size: cover;
-} 
+}
 
 
 .image_box_beer,
@@ -1327,7 +1338,7 @@ margin-right: 60px;
     max-height: 200px;
     max-width: 100%;
   }
-  
+
 /* Generic Button Styles */
 
   .button{
@@ -1355,7 +1366,7 @@ margin-right: 60px;
 /* Send Button Styles */
 
   .form-btn{
-    width:180px;
+    width:300px;
     display: block;
     height: auto;
     padding:15px;
@@ -1364,6 +1375,7 @@ margin-right: 60px;
     border:none;
     border-radius:3px;
     outline: none;
+    margin:0 auto;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
@@ -1374,7 +1386,9 @@ margin-right: 60px;
   }
   .form-btn1{
     margin-left: -15px;
-    
+
+    margin:0 auto !important;
+    margin-bottom: 20px !important;
   }
 
   .form-btn:hover{
@@ -1440,21 +1454,29 @@ button#login:hover div#loginModule{
   font-size: 4vw;
   vertical-align: middle;
 }
-
+.menuItem{
+  position: relative;
+}
 .menuItem span{
   color:#fff;
 }
-.menuItem:hover{
-  height: 400px;
-}
 
+.menuItem button{
+  margin:0 auto;
+  float:right;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
 #description{
   display: none;
   font-size: 14px;
   text-align: left;
   color:#fff;
 }
-
+.menuItem img:hover .menuItem {
+  height: 300px
+}
 .menuItem:hover #description{
   display: block;
 }
@@ -1482,22 +1504,22 @@ label{
   left: 50%;
   /*width:30em;
   height:18em;*/
-  margin-top: -9em; 
-  margin-left: -13em; 
+  margin-top: -9em;
+  margin-left: -13em;
 }
 
 .pay-button{
   padding: 20px;
-  margin: 30px;
-  position:relative;
-
+  margin-top: 20px;
+  width:90%;
+  background-color: rgba(0,0,0,0.3);
 }
 
 #order-btn{
 
-  margin: -10px -70px; 
+  margin: -10px -70px;
   position:relative;
-  top:50%; 
+  top:50%;
   left:50%;
 }
 
@@ -1519,4 +1541,82 @@ label{
 }
 .log input:first-of-type{
   margin-left:2px;
+}
+
+#contact-us input, #contact-us button{
+  width:300px;
+  display: block;
+  margin:10 auto;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: right;
+    }
+}
+
+div#loginButton{
+  width:300px;
+  height: 100px;
+  margin:0 auto;
+}
+div#loginButton input{
+  padding: 5px;
+  float: right;
+
+}
+
+#searchForm input{
+  border:1px solid grey;
+  border-radius: 25px;
+  background-color: rgba(255,255,255,0.7);
+  margin:0 auto;
+}
+
+
+div.finalizeContent{
+  margin-top:30px;
+}
+
+#inputMonth{
+  width: 50px;
+  display: inline-block;
+}
+
+#inputYear{
+    width: 50px;
+    display: inline-block;
+}
+
+
+#waiter{
+  float:right;
+  margin-top:8px;
+  margin-right:10px;
+}
+
+
+#payContainer{
+  color: black;
+  margin:0 auto;
+  margin-top: 20px;
+  padding-top: 20px;
+  /*font-size: 20px;*/
+
 }

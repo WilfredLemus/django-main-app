@@ -2,12 +2,12 @@
 <script src="{% static 'website/init.js' %}"></script>
 {% for meal in data %}
 
-  <li class="item {{meal.type_id.id}} breakfast menuItem">
-    <h2 class="white orderText">{{meal.name}}</h2>
-    <span>{{meal.price}}</span>
-    <p id="description">{{meal.description}}
+  <li class="item {{meal.type_id.id}} breakfast menuItem" style="width:50%;margin:0 auto;">
+    <h2 class="white orderText" style="color:black;font-size:20px;">{{meal.name}} - {{meal.price}}</h2>
+
+
     <button class="btn btn-default" id="btn-add" name="{{meal.id}}">Order</button>
-    </p>
+
   </li>
 
 {% endfor %}
