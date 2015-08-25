@@ -22,3 +22,15 @@ We used Django, databaes – Django ORM, Python, JavaScript, HTML5, CSS and Stri
 3. Run bower install.
 4. Install all requirements.
 5. In order to run the server type python manage.py runserver.
+6. Enjoy the app.
+
+# Test instructions
+
+In order you make orders you should have a registration.
+
+If you want to test our payments you should use a test card:
+- card number: 4242424242424242
+- cvc: 3512
+- expiration (mm/yyyy): 5 / 30
+
+After that your payment will be reported in our stripe test dashboard.
