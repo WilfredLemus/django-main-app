@@ -59,6 +59,7 @@ def user_logout(request):
     logout(request)
     return redirect("index")
 
+
 def callwaiter(request):
     if request.method == "POST":
         username = request.POST.get("table")
@@ -151,7 +152,7 @@ def search(request):
             data = meals
         else:
             return HttpResponse("No meals found!")
-        return render(request,'meals.html', locals())
+        return render(request, 'meals.html', locals())
 
     # current_user_id = request.user.id
     # your_order = Order.objects.filter(user_id=current_user_id)
@@ -160,6 +161,7 @@ def search(request):
 
     else:
         return HttpResponse("You are not allowed to view this page!")
+
 
 def change_state(request):
     try:
@@ -227,8 +229,10 @@ def page5(request):
 
 def get_orders(request):
     if request.method == 'GET':
-        drinks=Order.objects.filter(meals__type_id__name='drinks', is_paid=False).order_by('table')
-        kitchen = Order.objects.exclude(meals__type_id__name='drinks', is_paid=False).order_by('table')
+        drinks = Order.objects.filter(
+            meals__type_id__name='drinks', is_paid=False).order_by('table')
+        kitchen = Order.objects.exclude(
+            meals__type_id__name='drinks', is_paid=False).order_by('table')
         for order in drinks:
             print("{} {} {} {}".format(order.seat_number,
                                        order.table,
@@ -238,7 +242,9 @@ def get_orders(request):
     else:
         return HttpResponse("Wrong URL")
 
-#login required
+# login required
+
+
 def get_orders(request):
     sells = Sell.objects.filter(is_paid=0).all()
     tables = Call.objects.all()
@@ -266,7 +272,8 @@ def makecurrentorder(request):
         sell = None
 
     if sell is None:
-        order = Order(user_id=request.user, table=table_num, seat_number=0, is_served=0,is_accepted=0)
+        order = Order(user_id=request.user, table=table_num,
+                      seat_number=0, is_served=0, is_accepted=0)
         order.save()
         Sell(user=request.user, order=order).save()
         order_price = 0
@@ -275,7 +282,8 @@ def makecurrentorder(request):
         order_price = order.price
 
     for meal in meals:
-        OrderMeal(meal=Meal.objects.get(pk=meal['real_id']), order=order).save()
+        OrderMeal(
+            meal=Meal.objects.get(pk=meal['real_id']), order=order).save()
         order_price += float(meal["price"])
     order.price = order_price
     order.save()

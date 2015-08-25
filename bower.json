@@ -1,0 +1,24 @@
+{
+  "name": "bower",
+  "version": "0.0.0",
+  "homepage": "https://github.com/PI-Technology/django-main-app",
+  "authors": [
+    "Petar Ivanov <pepincho95@gmail.com>"
+  ],
+  "description": "describes the dependencies of the project",
+  "main": "bower_components",
+  "keywords": [
+    "dependencies"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}
